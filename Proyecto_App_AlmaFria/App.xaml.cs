@@ -1,4 +1,6 @@
-﻿namespace Proyecto_App_AlmaFria
+﻿using Proyecto_App_AlmaFria.Views;
+
+namespace Proyecto_App_AlmaFria
 {
 	public partial class App : Application
 	{
@@ -6,7 +8,7 @@
 		{
 			InitializeComponent();
 
-			MainPage = new AppShell();
+			MainPage = new ProductDetailPage();
 		}
 	}
 }
