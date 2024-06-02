@@ -13,7 +13,10 @@ namespace Proyecto_App_AlmaFria
 				{
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("fontello.ttf", "Icons");
+					fonts.AddFont("arial_narrow_7.ttf", "Arial7");
+					fonts.AddFont("OpenSerif-Book.ttf", "OpenSerif");
+					fonts.AddFont("Nexa-ExtraLight.ttf", "NexaLight");
+					fonts.AddFont("Nexa-Heavy.ttf", "NexaHeavy");
 				});
 
 #if DEBUG
