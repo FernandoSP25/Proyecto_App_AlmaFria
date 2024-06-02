@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Fonts\Nexa-ExtraLight.ttf" />
 	  <None Remove="Resources\Fonts\Nexa-Heavy.ttf" />
 	  <None Remove="Resources\Fonts\OpenSerif-Book.ttf" />
+
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,5 +99,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionProyecto_App_AlmaFriaHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>
