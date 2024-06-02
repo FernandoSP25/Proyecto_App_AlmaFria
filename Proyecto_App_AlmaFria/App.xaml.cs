@@ -8,7 +8,8 @@ namespace Proyecto_App_AlmaFria
 		{
 			InitializeComponent();
 
-			MainPage = new ProductDetailPage();
+			MainPage = new NavigationPage(new LoginPage());
+
 		}
 	}
 }

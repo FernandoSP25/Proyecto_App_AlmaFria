@@ -2,11 +2,105 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.CreateAccountPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="CreateAccountPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions=".3* , .7*">
+        <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
+        <Grid BackgroundColor="{StaticResource BackGroundColor}" Opacity=".8" />
+        <Grid ColumnDefinitions=".7* , .3*">
+            <Image
+               Aspect="AspectFit"
+               HeightRequest="80"
+               Source="applogo.png"/>
+            <skia:SKLottieView 
+                Grid.Column="1" 
+                HeightRequest="200" 
+                RepeatCount="-1" 
+                Source="animation_login.json"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <RoundRectangle Margin="-5,-30,-5,-2"
+                        CornerRadius="30,30,0,0"
+                        Fill="White"/>
+            <VerticalStackLayout Margin="30,0,30,0">
+                <Label FontAttributes="Bold"
+                   FontFamily="OpenSerif"
+                   FontSize="Title"
+                   Text="Create your account!"
+                   TextColor="#2D2D2D"/>
+                <Grid Margin="0,40,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="60" />
+                    <Image Source="user_ico.png"
+                       Aspect="AspectFit"
+                       HeightRequest="40"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                    <Entry Grid.Column="1"
+                       Placeholder="USER_NAME"
+                       Text="Pepito Sanchez"
+                       TextColor="{StaticResource GrayText}"
+                       VerticalOptions="Center"/>
+                </Grid>
+                <Grid Margin="0,40,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="60" />
+                    <Image Source="email.png"
+                       Aspect="AspectFit"
+                       HeightRequest="40"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                    <Entry Grid.Column="1"
+                       Placeholder="EMAIL"
+                       Text="user@gmail.com"
+                       TextColor="{StaticResource GrayText}"
+                       VerticalOptions="Center"/>
+                </Grid>
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}"
+                CornerRadius="10"
+                HeightRequest="60"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="60" />
+                    <Image Source="password.png"
+                       Aspect="AspectFit"
+                       HeightRequest="40"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                    <Entry Grid.Column="1"
+                       Placeholder="PASSWORD"
+                       IsPassword="True"
+                       Text="user12345"
+                       TextColor="{StaticResource GrayText}"
+                       VerticalOptions="Center"/>
+                </Grid>
+                <Button
+                x:Name="btnRegistarse"
+                Clicked="btnRegistarse_Clicked"
+                Margin="10,30,10,0"
+                BackgroundColor="{StaticResource Pink3}"
+                HeightRequest="60"
+                Text="Crear tu cuenta"
+                TextColor="White"/>
+
+                <Button
+                x:Name="btnSalir"
+                Clicked="btnSalir_Clicked"
+                Margin="10,30,10,0"
+                BackgroundColor="{StaticResource Pink3}"
+                HeightRequest="60"
+                Text="Salir"
+                TextColor="White"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

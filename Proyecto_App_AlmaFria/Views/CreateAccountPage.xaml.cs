@@ -6,4 +6,14 @@ public partial class CreateAccountPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+	private void btnSalir_Clicked(object sender, EventArgs e)
+	{
+		Navigation.PopAsync();
+	}
+
+	private void btnRegistarse_Clicked(object sender, EventArgs e)
+	{
+
+	}
 }
