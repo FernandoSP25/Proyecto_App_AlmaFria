@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.ProductDetailPage"
              Title="ProductDetailPage"
-             BackgroundColor="{StaticResource White}">
+             BackgroundColor="{StaticResource Pink1}">
 
     <Grid Margin="15" RowDefinitions=".4*,.1*,.1*,.4*">
 
@@ -17,7 +17,7 @@
                        Source="Resources/Images/paleta.png"/>
                 <Grid ColumnDefinitions="*,*">
                     <Border Margin="15,35,0,0"
-                            BackgroundColor="{StaticResource Pink2}"
+                            BackgroundColor="{StaticResource Pink1}"
                             HeightRequest="50"
                             HorizontalOptions="Start"
                             VerticalOptions="Start"
@@ -25,10 +25,47 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="10,10,10,10"/>
                         </Border.StrokeShape>
+                        <Image Grid.RowSpan="2" 
+                               Aspect="AspectFill"
+                               Source="Resources/Images/dp_return.png"/>
+                    </Border>
+                    <Border Grid.Column="1"
+                            Margin="0,35,15,0"
+                            BackgroundColor="{StaticResource Pink1}"
+                            HeightRequest="50"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            WidthRequest="50">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10,10,10,10"/>
+                            </Border.StrokeShape>
+                            <Image Grid.RowSpan="2" 
+                               Aspect="AspectFill"
+                               Source="Resources/Images/dp_favorite.png"/>
                     </Border>
                 </Grid>
             </Grid>
         </Border>
-        
+        <Border Grid.Row="1"
+                Grid.RowSpan="2"
+                Stroke="{StaticResource Pink2}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="30,30,30,30"/>
+                </Border.StrokeShape>
+
+                <Grid Padding="20"
+                          BackgroundColor="{StaticResource Pink2}"
+                          ColumnDefinitions=".5*,.25*,.25*"
+                          RowDefinitions="*,*">
+
+                <Label Grid.ColumnSpan="2"
+                             FontAttributes="Bold"
+                             FontFamily=""
+                             FontSize="20"
+                             Text="FRESA CON ALMA DE LECHE CONDENSADA"
+                             TextColor="White"/>
+            </Grid>
+                      
+        </Border>
     </Grid>
 </ContentPage>
