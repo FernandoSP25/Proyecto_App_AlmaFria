@@ -2,11 +2,100 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.LoginPage"
-             Title="LoginPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             Title="Iniciar sesion"
+             >
+    <Grid RowDefinitions=".3* , .7*">
+        <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
+        <Grid BackgroundColor="{StaticResource Pink1}" Opacity=".8" />
+        <Grid ColumnDefinitions=".7* , .3*">
+            <Image
+                   Aspect="AspectFit"
+                   HeightRequest="80"
+                   Source="applogo.png"/>
+            <skia:SKLottieView 
+                    Grid.Column="1" 
+                    HeightRequest="200" 
+                    RepeatCount="-1" 
+                    Source="animation_login.json"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <RoundRectangle Margin="-5,-30,-5,-2"
+                            CornerRadius="30,30,0,0"
+                            Fill="White"/>
+            <VerticalStackLayout Margin="30,0,30,0">
+                <Label FontAttributes="Bold"
+                       FontFamily="NexaHeavy"
+                       FontSize="Title"
+                       Text="Welcome!"
+                       TextColor="{StaticResource BlackText}"/>
+                <Label FontFamily="OpenSansRegular"
+                       Text="Login to continue"
+                       TextColor="{StaticResource GrayText}"/>
+                <Grid Margin="0,40,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}"
+                                    CornerRadius="10"
+                                    HeightRequest="60"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    WidthRequest="60" />
+                    <Image Source="email.png"
+                           Aspect="AspectFit"
+                           HeightRequest="40"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                    <Entry Grid.Column="1"
+                           Placeholder="EMAIL"
+                           Text="email"
+                           TextColor="{StaticResource GrayText}"
+                           VerticalOptions="Center"/>
+                </Grid>
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}"
+                    CornerRadius="10"
+                    HeightRequest="60"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
+                    <Image Source="password.png"
+                           Aspect="AspectFit"
+                           HeightRequest="40"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                    <Entry Grid.Column="1"
+                           Placeholder="PASSWORD"
+                           IsPassword="True"
+                           Text="Password"
+                           TextColor="{StaticResource GrayText}"
+                           VerticalOptions="Center"/>
+                </Grid>
+                <Button
+                    x:Name="btnLogin"
+                    Clicked="btnLogin_Clicked"
+                    Margin="10,30,10,0"
+                    BackgroundColor="{StaticResource Pink3}"
+                    HeightRequest="60"
+                    Text="Login"
+                    TextColor="White"/>
+
+                <Label 
+                    x:Name="ForgotPassword"
+                    Margin="0,20,0,-10"
+                       HorizontalOptions="Center"
+                       Text="Forgot you password?"
+                       TextColor="Blue"
+                       TextDecorations="Underline"/>
+
+                <Button
+                        x:Name="btnCreateAccount"
+                        Clicked="btnCreateAccount_Clicked"
+                        Margin="10,40,10,0"
+                        BackgroundColor="#FBF6FD"
+                        HeightRequest="60"
+                        Text="Create your Account"
+                        TextColor="{StaticResource Pink3}" />
+
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

@@ -61,6 +61,20 @@
 	  <None Remove="Resources\Fonts\Nexa-ExtraLight.ttf" />
 	  <None Remove="Resources\Fonts\Nexa-Heavy.ttf" />
 	  <None Remove="Resources\Fonts\OpenSerif-Book.ttf" />
+	  <None Remove="Resources\Images\applogo.png" />
+	  <None Remove="Resources\Images\bebidas.png" />
+	  <None Remove="Resources\Images\email.png" />
+	  <None Remove="Resources\Images\fresa_paleta.jpg" />
+	  <None Remove="Resources\Images\frutti_bite.jpg" />
+	  <None Remove="Resources\Images\helado_ico.png" />
+	  <None Remove="Resources\Images\login_alma_fria_background.png" />
+	  <None Remove="Resources\Images\menta_helado.jpg" />
+	  <None Remove="Resources\Images\paleta_ico.png" />
+	  <None Remove="Resources\Images\password.png" />
+	  <None Remove="Resources\Images\pcr_chocolate.jpg" />
+	  <None Remove="Resources\Images\p_relleno.png" />
+	  <None Remove="Resources\Images\user_ico.png" />
+	  <None Remove="Resources\Raw\animation_login.json" />
 
 	</ItemGroup>
 
@@ -68,6 +82,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

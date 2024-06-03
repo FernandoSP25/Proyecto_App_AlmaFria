@@ -47,5 +47,8 @@
     <Color x:Key="Pink1">#F8E2D9</Color>
     <Color x:Key="Pink2">#E79B87</Color>
     <Color x:Key="Pink3">#DB6443</Color>
+    <Color x:Key="GrayText">#A3A3A4</Color>
+    <Color x:Key="BlackText">#2D2D2D</Color>
+    <Color x:Key="BackGroundColor">#F8E2D9</Color>
 
 </ResourceDictionary>
