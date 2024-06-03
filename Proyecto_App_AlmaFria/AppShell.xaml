@@ -18,7 +18,7 @@
         <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" />
         <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}" />
         <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" />
-        <ShellContent Title="Mi cuenta" ContentTemplate="{DataTemplate views:AccountPage}" />
+        <ShellContent Title="Detalles de productos" ContentTemplate="{DataTemplate views:ProductDetailPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="About">
