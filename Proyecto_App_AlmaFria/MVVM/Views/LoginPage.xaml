@@ -6,12 +6,7 @@
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="Iniciar sesion"
              >
-
-    <ContentPage.BindingContext>
-        <local:LoginViewModel/>
-    </ContentPage.BindingContext>
     
-
     <Grid RowDefinitions=".3* , .7*">
         <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
         <Grid BackgroundColor="{StaticResource Pink1}" Opacity=".8" />
@@ -77,11 +72,11 @@
                            VerticalOptions="Center"/>
                 </Grid>
                 <Button
+                    Command="{Binding btnLogin_Clicked}"
                     Margin="10,30,10,0"
                     BackgroundColor="{StaticResource Pink3}"
                     HeightRequest="60"
                     Text="Login"
-                    Command="{Binding btnLoginClick}"
                     TextColor="White"/>
 
                 <Label 
@@ -93,8 +88,7 @@
                        TextDecorations="Underline"/>
 
                 <Button
-                        x:Name="btnCreateAccount"
-                        Clicked="btnCreateAccount_Clicked"
+                        Command="{Binding btnCreateAccount_Clicked}"
                         Margin="10,40,10,0"
                         BackgroundColor="#FBF6FD"
                         HeightRequest="60"

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Maui.Storage;
 using System.Windows.Input;
+using Proyecto_App_AlmaFria.Views;
+using Proyecto_App_AlmaFria.Services;
 
 namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 {
@@ -15,6 +17,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 		public UsuarioModel usuario { get; set; }
 		public event PropertyChangedEventHandler PropertyChanged;
+		private readonly INavigationService _navigationService;
 
 		public LoginViewModel()
 		{ 
@@ -25,15 +28,11 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			};
 		}
 
-		public void btnLoginClick()
-		{
-			Application.Current.MainPage = new AppShell();
-		}
+		public ICommand btnLogin_Clicked =>
+			new Command(() =>
+			Application.Current.MainPage = new AppShell());
 
-
-		public void btnCrearCuenta()
-		{
-
-		}
+		public ICommand btnCreateAccount_Clicked =>
+			new Command(async () => await _navigationService.NavigateToCreateAccountPage());
 	}
 }
