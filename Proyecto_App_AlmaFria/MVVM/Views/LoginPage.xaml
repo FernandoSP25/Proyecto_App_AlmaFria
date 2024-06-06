@@ -11,6 +11,7 @@
         <local:LoginViewModel/>
     </ContentPage.BindingContext>
     
+
     <Grid RowDefinitions=".3* , .7*">
         <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
         <Grid BackgroundColor="{StaticResource Pink1}" Opacity=".8" />
