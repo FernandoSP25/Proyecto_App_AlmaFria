@@ -11,7 +11,7 @@ public partial class LoginPage : ContentPage
 	private  void btnLogin_Clicked(object sender, EventArgs e)
 	{
 
-		Application.Current.MainPage = new AppShell();
+
 	}
 
 	private void btnCreateAccount_Clicked(object sender, EventArgs e)

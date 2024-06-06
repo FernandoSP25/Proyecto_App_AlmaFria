@@ -136,9 +136,6 @@
                 <Label FontFamily="NexaHeavy" Text="Tamaño" TextColor="{StaticResource Black}"/>
 
             </VerticalStackLayout>
-            
-            
         </Grid>
-        
     </Grid>
 </ContentPage>
