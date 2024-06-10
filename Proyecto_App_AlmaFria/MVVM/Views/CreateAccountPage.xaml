@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.CreateAccountPage"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             Title="CreateAccountPage">
+             Title="CreateAccountPage"
+             Shell.NavBarIsVisible="False">
     <Grid RowDefinitions=".3* , .7*">
         <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
         <Grid BackgroundColor="{StaticResource BackGroundColor}" Opacity=".8" />
@@ -84,8 +85,7 @@
                        VerticalOptions="Center"/>
                 </Grid>
                 <Button
-                x:Name="btnRegistarse"
-                Clicked="btnRegistarse_Clicked"
+                Command="{Binding CreateAccountCommand}"
                 Margin="10,30,10,0"
                 BackgroundColor="{StaticResource Pink3}"
                 HeightRequest="60"
@@ -93,8 +93,7 @@
                 TextColor="White"/>
 
                 <Button
-                x:Name="btnSalir"
-                Clicked="btnSalir_Clicked"
+                Command="{Binding SalirCommand}"
                 Margin="10,30,10,0"
                 BackgroundColor="{StaticResource Pink3}"
                 HeightRequest="60"

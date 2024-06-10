@@ -10,6 +10,7 @@ namespace Proyecto_App_AlmaFria.Services
 	public interface INavigationService
 	{
 		Task NavigateToCreateAccountPage();
+		void SetMainPageToAppShell();
 	}
 
 	public class NavigationService : INavigationService
@@ -18,5 +19,11 @@ namespace Proyecto_App_AlmaFria.Services
 		{
 			await Application.Current.MainPage.Navigation.PushAsync(new CreateAccountPage());
 		}
+
+		public void SetMainPageToAppShell()
+		{
+			Application.Current.MainPage = new AppShell();
+		}
+
 	}
 }

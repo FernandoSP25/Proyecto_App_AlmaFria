@@ -6,7 +6,9 @@ namespace Proyecto_App_AlmaFria
 	{
 		public AppShell()
 		{
+
 			InitializeComponent();
+
 		}
 	}
 }

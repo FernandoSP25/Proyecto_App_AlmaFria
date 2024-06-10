@@ -10,5 +10,7 @@ namespace Proyecto_App_AlmaFria.MVVM.Models
 	{
 		public string email { get; set; }
 		public string password { get; set; }
+
+
 	}
 }
