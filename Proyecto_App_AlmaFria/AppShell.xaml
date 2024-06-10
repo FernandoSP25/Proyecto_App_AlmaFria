@@ -5,24 +5,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:local="clr-namespace:Proyecto_App_AlmaFria"
         xmlns:views="clr-namespace:Proyecto_App_AlmaFria.Views"
-        Title="Proyecto_App_AlmaFria">
+        Title="Proyecto_App_AlmaFria"
+        Shell.FlyoutBehavior="Disabled">
 
-    <Shell.FlyoutHeader>
-        <Grid HeightRequest="100" BackgroundColor="#F8E2D9">
-            <Image Source="applogo.png" Aspect="AspectFit" HeightRequest="50" VerticalOptions="Center"/>
-        </Grid>
-    </Shell.FlyoutHeader>
+    <ShellContent
+        Title="Inicio"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage" />
+    <ShellContent
+        Title="Crear cuenta"
+        ContentTemplate="{DataTemplate views:CreateAccountPage}"
+        Route="CreateAccountPage" />
+    <ShellContent Title="Menu"
+                    ContentTemplate="{DataTemplate views:MenuPage}"
+                    Route="MenuPage" />
+    <ShellContent Title="Detalle productos" ContentTemplate="{DataTemplate views:ProductDetailPage}"
+                      Route="ProductDetailPage" />
 
-    <FlyoutItem Title="Home" >
-        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate views:HomePage}" />
-        <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" />
-        <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}" />
-        <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" />
-        <ShellContent Title="Detalles de productos" ContentTemplate="{DataTemplate views:ProductDetailPage}" />
-    </FlyoutItem>
-
-    <FlyoutItem Title="About">
-        <ShellContent ContentTemplate="{DataTemplate views:AccountPage}" />
-    </FlyoutItem>
-    
 </Shell>

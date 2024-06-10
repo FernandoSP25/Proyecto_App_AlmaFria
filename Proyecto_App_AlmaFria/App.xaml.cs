@@ -1,5 +1,4 @@
-﻿using Proyecto_App_AlmaFria.Services;
-using Proyecto_App_AlmaFria.Views;
+﻿using Proyecto_App_AlmaFria.Views;
 
 namespace Proyecto_App_AlmaFria
 {
@@ -8,9 +7,7 @@ namespace Proyecto_App_AlmaFria
 		public App()
 		{
 			InitializeComponent();
-			DependencyService.Register<INavigationService, NavigationService>();
-			MainPage = new NavigationPage(new LoginPage());
-
+			MainPage = new AppShell();
 		}
 	}
 }

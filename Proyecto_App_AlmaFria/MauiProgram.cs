@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Proyecto_App_AlmaFria.MVVM.ViewModels;
+using Proyecto_App_AlmaFria.Views;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Proyecto_App_AlmaFria
@@ -20,6 +22,7 @@ namespace Proyecto_App_AlmaFria
 					fonts.AddFont("Nexa-ExtraLight.ttf", "NexaLight");
 					fonts.AddFont("Nexa-Heavy.ttf", "NexaHeavy");
 				});
+
 
 #if DEBUG
 			builder.Logging.AddDebug();
