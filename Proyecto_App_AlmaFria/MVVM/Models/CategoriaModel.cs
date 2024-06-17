@@ -9,7 +9,7 @@ namespace Proyecto_App_AlmaFria.MVVM.Models
     public class CategoriaModel
     {
 		public int idCategoria { get; set; }
-		public required string nombreCategoria { get; set; }
-		public required string icon { get; set; }
+		public  string NombreCategoria { get; set; }
+		public  string Icon { get; set; }
 	}
 }

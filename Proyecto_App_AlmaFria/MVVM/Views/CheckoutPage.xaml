@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proyecto_App_AlmaFria.MVVM.Views.CheckoutPage"
+             Title="CheckoutPage">
+    <StackLayout Padding="20">
+        <Label Text="Checkout" FontSize="32" HorizontalOptions="Center"/>
+        <Label Text="Choose Receipt Type" FontSize="18"/>
+        <Picker Title="Receipt Type" SelectedItem="{Binding SelectedReceiptType}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Boleta</x:String>
+                    <x:String>Factura</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+        <Button Text="Complete Purchase" Command="{Binding CompletePurchaseCommand}"/>
+    </StackLayout>
+</ContentPage>

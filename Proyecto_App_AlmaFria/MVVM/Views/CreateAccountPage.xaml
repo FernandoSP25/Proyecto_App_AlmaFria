@@ -4,7 +4,7 @@
              x:Class="Proyecto_App_AlmaFria.Views.CreateAccountPage"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="CreateAccountPage"
-             Shell.NavBarIsVisible="False">
+             >
     <Grid RowDefinitions=".3* , .7*">
         <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
         <Grid BackgroundColor="{StaticResource BackGroundColor}" Opacity=".8" />

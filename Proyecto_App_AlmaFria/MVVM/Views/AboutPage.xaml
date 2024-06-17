@@ -3,10 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.MVVM.Views.AboutPage"
              Title="AboutPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <Label Text="About Page" />
+        <Label Text="This is the about page" />
+    </StackLayout>
 </ContentPage>

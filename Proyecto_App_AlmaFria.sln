@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto_App_AlmaFria", "Proyecto_App_AlmaFria\Proyecto_App_AlmaFria.csproj", "{A4ACC040-EEB2-4770-B06B-4ED4BCF78843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI_AlmaFria", "WebAPI_AlmaFria\WebAPI_AlmaFria.csproj", "{D485C322-AC38-43E6-BDC8-7666796E1CDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{A4ACC040-EEB2-4770-B06B-4ED4BCF78843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4ACC040-EEB2-4770-B06B-4ED4BCF78843}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4ACC040-EEB2-4770-B06B-4ED4BCF78843}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D485C322-AC38-43E6-BDC8-7666796E1CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D485C322-AC38-43E6-BDC8-7666796E1CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D485C322-AC38-43E6-BDC8-7666796E1CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D485C322-AC38-43E6-BDC8-7666796E1CDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

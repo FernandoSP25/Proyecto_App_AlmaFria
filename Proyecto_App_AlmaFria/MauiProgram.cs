@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using Proyecto_App_AlmaFria.MVVM.ViewModels;
+using Proyecto_App_AlmaFria.Services;
 using Proyecto_App_AlmaFria.Views;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Http; 
 
 namespace Proyecto_App_AlmaFria
 {
@@ -13,6 +16,7 @@ namespace Proyecto_App_AlmaFria
 			builder
 				.UseMauiApp<App>()
 				.UseSkiaSharp()
+
 				.ConfigureFonts(fonts =>
 				{
 					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -23,11 +27,19 @@ namespace Proyecto_App_AlmaFria
 					fonts.AddFont("Nexa-Heavy.ttf", "NexaHeavy");
 				});
 
+			// Registro del servicio AuthService con HttpClient
+			//builder.Services.AddHttpClient<AuthService>(client =>
+			//{
+			//	client.BaseAddress = new Uri("https://localhost:7274/");
+			//});
+
+			// Registrar ViewModel y Pages
+			builder.Services.AddTransient<LoginViewModel>();
+			builder.Services.AddTransient<LoginPage>();
 
 #if DEBUG
 			builder.Logging.AddDebug();
 #endif
-
 			return builder.Build();
 		}
 	}

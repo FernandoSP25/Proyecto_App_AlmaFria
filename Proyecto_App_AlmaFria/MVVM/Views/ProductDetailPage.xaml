@@ -90,7 +90,7 @@
                     <Label 
                                 FontFamily="OpenSansSemibold"
                                 FontSize="15"
-                                Text="(4,5545)"
+                                Text="(4,5)"
                                 TextColor="White"
                                 VerticalOptions="Center"/>
                 </HorizontalStackLayout>
