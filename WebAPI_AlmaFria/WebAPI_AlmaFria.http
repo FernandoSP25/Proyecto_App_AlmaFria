@@ -1,0 +1,6 @@
+@WebAPI_AlmaFria_HostAddress = http://localhost:5004
+
+GET {{WebAPI_AlmaFria_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

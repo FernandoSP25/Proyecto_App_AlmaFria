@@ -8,7 +8,7 @@
         <ListView SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" ItemTapped="ListView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding ProductName}" />
+                    <TextCell Text="{Binding NombreProducto}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

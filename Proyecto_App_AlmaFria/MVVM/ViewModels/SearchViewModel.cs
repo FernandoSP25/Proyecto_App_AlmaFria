@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Proyecto_App_AlmaFria.Generic;
 using Proyecto_App_AlmaFria.MVVM.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -31,50 +32,78 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			}
 		}
 
-		private ObservableCollection<ProductModel> _products;
-		public ObservableCollection<ProductModel> Products
+
+		private List<ProductModel> _products;
+		public List<ProductModel> Products
 		{
-			get => _products;
+			get
+			{
+				return _products;
+			}
 			set
 			{
 				SetProperty(ref _products, value);
 			}
 		}
 
+		private List<ProductModel> listatotal;
+		//private List<ProductCLS> listaProduct;
+		//public ProductModel oProductModel { get; set; }
+		//public string nombreCategoria { get; set; }
+
+		//public ProductCLS oCategoriaCLS { get; set; }
+
+
+		//private ObservableCollection<ProductModel> _products;
+		//public ObservableCollection<ProductModel> Products
+		//{
+		//	get => _products;
+		//	set
+		//	{
+		//		SetProperty(ref _products, value);
+		//	}
+		//}
+
+
 		public ICommand SearchCommand { get; }
 		public ICommand ProductTappedCommand { get; }
 
 		public SearchViewModel()
 		{
-			// Crear algunos productos de prueba
-			Products = new ObservableCollection<ProductModel>
-			{
-				new ProductModel { Id = 1, ProductName = "Producto 1", Description = "Descripción 1", Price = 10.0m },
-				new ProductModel { Id = 2, ProductName = "Producto 2", Description = "Descripción 2", Price = 20.0m },
-				new ProductModel { Id = 3, ProductName = "Producto 3", Description = "Descripción 3", Price = 30.0m },
-                // Agrega más productos según lo necesites
-            };
+			_ = listarProductos();
 			SearchCommand = new RelayCommand(SearchProducts);
 			ProductTappedCommand = new AsyncRelayCommand(ProductTapped);
+
+		}
+
+		private async Task listarProductos()
+		{
+			try
+			{
+				Products = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
+				listatotal = Products;
+
+
+				//var productos = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
+				//Products = new ObservableCollection<ProductModel>(productos);
+			}
+			catch (Exception ex)
+			{
+				// Maneja el error, por ejemplo, mostrando un mensaje de error
+				Console.WriteLine($"Error al listar productos: {ex.Message}");
+			}
 		}
 
 		private void SearchProducts()
 		{
 			if (string.IsNullOrWhiteSpace(_searchText))
 			{
-				// Restaurar la lista completa de productos si el texto de búsqueda está vacío
-				Products = new ObservableCollection<ProductModel>
-				{
-					new ProductModel { Id = 1, ProductName = "Producto 1", Description = "Descripción 1", Price = 10.0m },
-					new ProductModel { Id = 2, ProductName = "Producto 2", Description = "Descripción 2", Price = 20.0m },
-					new ProductModel { Id = 3, ProductName = "Producto 3", Description = "Descripción 3", Price = 30.0m },
-                    // Agrega más productos según lo necesites
-                };
+				_ = listarProductos();
 			}
 			else
 			{
-				var filteredProducts = _products.Where(p => p.ProductName.ToUpper().Contains(_searchText.ToUpper())).ToList();
-				Products = new ObservableCollection<ProductModel>(filteredProducts);
+				var filteredProducts = _products.Where(p => p.NombreProducto.ToUpper().Contains(_searchText.ToUpper())).ToList();
+				Products = filteredProducts;
 			}
 		}
 
