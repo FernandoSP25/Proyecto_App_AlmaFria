@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Proyecto_App_AlmaFria"
         xmlns:views="clr-namespace:Proyecto_App_AlmaFria.Views"
         Title="Proyecto_App_AlmaFria"
-        Shell.FlyoutBehavior="Disabled">
+        Shell.FlyoutBehavior="Disabled"
+        Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Inicio"

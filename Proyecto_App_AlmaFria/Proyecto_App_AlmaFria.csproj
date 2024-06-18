@@ -57,68 +57,71 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\arial_narrow_7.ttf" />
-	  <None Remove="Resources\Fonts\Nexa-ExtraLight.ttf" />
-	  <None Remove="Resources\Fonts\Nexa-Heavy.ttf" />
-	  <None Remove="Resources\Fonts\OpenSerif-Book.ttf" />
-	  <None Remove="Resources\Images\applogo.png" />
-	  <None Remove="Resources\Images\bebidas.png" />
-	  <None Remove="Resources\Images\email.png" />
-	  <None Remove="Resources\Images\fresa_paleta.jpg" />
-	  <None Remove="Resources\Images\frutti_bite.jpg" />
-	  <None Remove="Resources\Images\helado_ico.png" />
-	  <None Remove="Resources\Images\login_alma_fria_background.png" />
-	  <None Remove="Resources\Images\menta_helado.jpg" />
-	  <None Remove="Resources\Images\paleta_ico.png" />
-	  <None Remove="Resources\Images\password.png" />
-	  <None Remove="Resources\Images\pcr_chocolate.jpg" />
-	  <None Remove="Resources\Images\p_relleno.png" />
-	  <None Remove="Resources\Images\user_ico.png" />
-	  <None Remove="Resources\Raw\animation_login.json" />
+		<None Remove="Resources\Fonts\arial_narrow_7.ttf" />
+		<None Remove="Resources\Fonts\Nexa-ExtraLight.ttf" />
+		<None Remove="Resources\Fonts\Nexa-Heavy.ttf" />
+		<None Remove="Resources\Fonts\OpenSerif-Book.ttf" />
+		<None Remove="Resources\Images\applogo.png" />
+		<None Remove="Resources\Images\bebidas.png" />
+		<None Remove="Resources\Images\email.png" />
+		<None Remove="Resources\Images\fresa_paleta.jpg" />
+		<None Remove="Resources\Images\frutti_bite.jpg" />
+		<None Remove="Resources\Images\helado_ico.png" />
+		<None Remove="Resources\Images\login_alma_fria_background.png" />
+		<None Remove="Resources\Images\menta_helado.jpg" />
+		<None Remove="Resources\Images\paleta_ico.png" />
+		<None Remove="Resources\Images\password.png" />
+		<None Remove="Resources\Images\pcr_chocolate.jpg" />
+		<None Remove="Resources\Images\p_relleno.png" />
+		<None Remove="Resources\Images\user_ico.png" />
+		<None Remove="Resources\Raw\animation_login.json" />
 
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\Views\AboutPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\AccountPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\CartPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\CreateAccountPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\FavoritesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\HomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\MenuPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\ProductDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\Views\SearchPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="MVVM\Views\AccountPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\CartPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\CreateAccountPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\FavoritesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\HomePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\LoginPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\MenuPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\ProductDetailPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MVVM\Views\SearchPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
-	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionProyecto_App_AlmaFriaHideInfoBar="True" /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties XamarinHotReloadDebuggerTimeoutExceptionProyecto_App_AlmaFriaHideInfoBar="True" />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>

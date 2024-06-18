@@ -3,26 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.MenuPage"
              xmlns:views="clr-namespace:Proyecto_App_AlmaFria.Views"
+             xmlns:views1="clr-namespace:Proyecto_App_AlmaFria.MVVM.Views"
              Title="MenuPage"
-             Shell.NavBarIsVisible="False">
-    
+             >
+
     <Shell.FlyoutHeader>
         <Grid HeightRequest="100" BackgroundColor="#F8E2D9">
             <Image Source="applogo.png" Aspect="AspectFit" HeightRequest="50" VerticalOptions="Center"/>
         </Grid>
     </Shell.FlyoutHeader>
 
-
     <FlyoutItem Title="Home" >
         <ShellContent Title="Inicio" ContentTemplate="{DataTemplate views:HomePage}" />
         <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" />
         <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}" />
         <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" />
-        <ShellContent Title="Detalles de productos" ContentTemplate="{DataTemplate views:AccountPage}" />
+        <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate views:AccountPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="About">
-        <ShellContent ContentTemplate="{DataTemplate views:AccountPage}" />
+        <ShellContent ContentTemplate="{DataTemplate views1:PurchaseHistoryPage}" />
     </FlyoutItem>
+
 
 </Shell>

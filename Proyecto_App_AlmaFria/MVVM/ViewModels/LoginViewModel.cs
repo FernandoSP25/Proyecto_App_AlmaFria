@@ -1,10 +1,7 @@
-﻿using Proyecto_App_AlmaFria.MVVM.Models;
-using System.ComponentModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Proyecto_App_AlmaFria.Views;
-
-
+using Proyecto_App_AlmaFria.Services;
+using System.Windows.Input;
 
 
 namespace Proyecto_App_AlmaFria.MVVM.ViewModels
@@ -12,19 +9,30 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 	public partial class LoginViewModel : ObservableObject
 	{
+	
+
+		public ICommand SigninCommand { get; }
+		public ICommand SignupCommand { get; }
+
+
 
 		public LoginViewModel()
 		{
+			SigninCommand = new AsyncRelayCommand(Login);
+			SignupCommand = new AsyncRelayCommand(Signup);
 
 		}
 
-		[RelayCommand]
-		async Task Signin() => await Shell.Current.GoToAsync("//MenuPage");
-		 //void Signin() => Application.Current.MainPage = new MenuPage();
 
+		private async Task Login()
+		{
+				await Shell.Current.GoToAsync("//MenuPage");
+		}
 
-		[RelayCommand]
-		 async Task Signup() => await Shell.Current.GoToAsync("//CreateAccountPage");
+		private async Task Signup()
+		{
+			await Shell.Current.GoToAsync("//CreateAccountPage");
+		}
 
 	}
 }
