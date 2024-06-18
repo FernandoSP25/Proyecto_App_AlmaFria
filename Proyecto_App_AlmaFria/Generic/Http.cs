@@ -79,8 +79,6 @@ namespace Proyecto_App_AlmaFria.Generic
 			var result = await rpta.Content.ReadAsStringAsync();
 			T l = JsonConvert.DeserializeObject<T>(result);
 			return l;
-
-
 		}
 	}
 }

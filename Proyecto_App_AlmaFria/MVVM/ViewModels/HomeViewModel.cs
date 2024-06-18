@@ -52,10 +52,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 			ProductosPopulares = new ObservableCollection<ProductModel>
 			{
-				new ProductModel { ProductName = "Helado de Chocolate", Image = "pcr_chocolate.jpg" },
-				new ProductModel { ProductName = "Paleta de Fresa", Image = "fresa_paleta.jpg" },
-				new ProductModel { ProductName = "Pastel de Chocolate", Image = "frutti_bite.jpg" }
-                // Agrega más productos según lo necesites
+	
             };
 
 			ProductSelectedCommand = new AsyncRelayCommand<ProductModel>(ProductSelected);
