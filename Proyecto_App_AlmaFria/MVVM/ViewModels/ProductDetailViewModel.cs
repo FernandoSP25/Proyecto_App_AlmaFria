@@ -28,6 +28,8 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			VolverCommand = new AsyncRelayCommand(Volver);
 		}
 
+
+
 		private async Task Volver()
 		{
 			await Shell.Current.GoToAsync("//MenuPage");

@@ -19,6 +19,12 @@ namespace Proyecto_App_AlmaFria.Generic
 			{
 				var cliente = new HttpClient();
 				var response = await cliente.PostAsJsonAsync<T>(url, obj);
+
+				if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+				{
+					return -1; 
+				}
+
 				if (response.IsSuccessStatusCode)
 				{
 					string cadena = await response.Content.ReadAsStringAsync();
