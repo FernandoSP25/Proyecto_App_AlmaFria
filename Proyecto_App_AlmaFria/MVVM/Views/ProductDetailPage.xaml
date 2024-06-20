@@ -55,7 +55,7 @@
                             FontAttributes="Bold"
                             FontFamily="NexaHeavy"
                             FontSize="20"
-                            Text="FRESA CON ALMA DE LECHE CONDENSADA"
+                            Text="{Binding Product.NombreProducto}"
                             VerticalTextAlignment="Center"
                             TextColor="White"/>
 

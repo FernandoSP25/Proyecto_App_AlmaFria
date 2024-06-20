@@ -6,7 +6,10 @@
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="Iniciar sesion"
              >
-    
+    <ContentPage.BindingContext>
+        <local:LoginViewModel />
+    </ContentPage.BindingContext>
+
     <Grid RowDefinitions=".3* , .7*">
         <Image Aspect="AspectFill"  Source="login_alma_fria_background.png"/>
         <Grid BackgroundColor="{StaticResource Pink1}" Opacity=".8" />
@@ -48,7 +51,7 @@
                            HorizontalOptions="Center" />
                     <Entry Grid.Column="1"
                            Placeholder="EMAIL"
-                           Text="email"
+                           Text="{Binding Email}"
                            TextColor="{StaticResource GrayText}"
                            VerticalOptions="Center"/>
                 </Grid>
@@ -67,7 +70,7 @@
                     <Entry Grid.Column="1"
                            Placeholder="PASSWORD"
                            IsPassword="True"
-                           Text="Password"
+                           Text="{Binding Password}"
                            TextColor="{StaticResource GrayText}"
                            VerticalOptions="Center"/>
                 </Grid>
@@ -79,11 +82,10 @@
                     Text="Login"
                     TextColor="White"/>
 
-                <Label 
-                    x:Name="ForgotPassword"
-                    Margin="0,20,0,-10"
+                <Label x:Name="ForgotPassword"
+                       Margin="0,20,0,-10"
                        HorizontalOptions="Center"
-                       Text="Forgot you password?"
+                       Text="Forgot your password?"
                        TextColor="Blue"
                        TextDecorations="Underline"/>
 
@@ -94,6 +96,13 @@
                         HeightRequest="60"
                         Text="Create your Account"
                         TextColor="{StaticResource Pink3}" />
+
+                <!-- Mensaje de error -->
+                <Label Text="{Binding ErrorMessage}"
+                        TextColor="Red"
+                        IsVisible="{Binding IsErrorVisible}"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0"/>
 
             </VerticalStackLayout>
         </Grid>

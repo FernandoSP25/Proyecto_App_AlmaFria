@@ -39,7 +39,6 @@ app.MapGet("/api/productos/{id}", async (int id, PaleteriaDbContext bd) =>
 	return Results.Ok(producto);
 }).AddEndpointFilter<FilterNumber>();
 
-
 app.MapGet("/productos/buscarnombre/{nombreproducto}", async (string nombreproducto, PaleteriaDbContext bd) =>
 {
 	var productos = await bd.Productos
@@ -51,7 +50,63 @@ app.MapGet("/productos/buscarnombre/{nombreproducto}", async (string nombreprodu
 		return Results.NoContent();
 	}
 	return Results.Ok(productos);
+
 }).AddEndpointFilter<FilterEmpty>().AddEndpointFilter<FilterString>();
+
+
+//LOGIN
+
+app.MapGet("/api/auth/login", async (string email, string password, PaleteriaDbContext bd) =>
+{
+	var user = await bd.Clientes
+		.FirstOrDefaultAsync(u => u.CorreoElectronico == email && u.Contrasenia == password);
+
+	if (user == null)
+	{
+		return Results.NotFound();
+	}
+
+	return Results.Ok(user);
+});
+
+app.MapPost("/api/auth/loginrecord", async (Login loginRecord, PaleteriaDbContext bd) =>
+{
+	// Verificar si el usuario ya tiene una sesión activa
+	var activeSession = await bd.Logins
+		.FirstOrDefaultAsync(l => l.UserId == loginRecord.UserId && l.IsConnected);
+
+	if (activeSession != null)
+	{
+		return Results.Conflict(new { message = "User already logged in on another device." });
+	}
+
+	bd.Logins.Add(loginRecord);
+	await bd.SaveChangesAsync();
+	return Results.Ok(loginRecord.LoginId);
+});
+
+
+//REGISTRO
+app.MapPost("/api/auth/register", async (Cliente user, PaleteriaDbContext bd) =>
+{
+	bd.Clientes.Add(user);
+	await bd.SaveChangesAsync();
+	return Results.Ok(user.IdCliente);
+});
+
+
+//Salir
+app.MapPost("/api/auth/logout", async (int id, PaleteriaDbContext bd) =>
+{
+	var loginRecord = await bd.Logins.FindAsync(id);
+	if (loginRecord == null)
+	{
+		return Results.NotFound();
+	}
+	loginRecord.LogoutTimestamp = DateTime.Now;
+	await bd.SaveChangesAsync();
+	return Results.Ok(loginRecord.LoginId);
+});
 
 
 
