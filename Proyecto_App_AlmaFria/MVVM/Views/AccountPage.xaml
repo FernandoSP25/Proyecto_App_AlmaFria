@@ -3,15 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.AccountPage"
              Title="AccountPage">
-    <StackLayout>
-        <Label Text="Account Page" />
-        <Label Text="Name" />
-        <Entry Text="{Binding Name}" />
-        <Label Text="Email" />
-        <Entry Text="{Binding Email}" />
-        <Label Text="Password" />
-        <Entry Text="{Binding Password}" />
-        <Button Text="Save" Command="{Binding SaveCommand}" />
-        <Button Text="Logout" Command="{Binding LogoutCommand}" />
-    </StackLayout>
+    <Grid RowDefinitions="0.9*,0.1*">
+        <VerticalStackLayout>
+
+            <Label Text="Name" Margin="0,10,0,0" />
+            <Entry Text="{Binding Name}" />
+            <Label Text="Email" />
+            <Entry Text="{Binding Email}" />
+            <Label Text="Password" />
+            <Entry Text="{Binding Password}" />
+            <Button Text="Editar" Command="{Binding EditarCommand}" Margin="0,0,0,5" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
+            <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White" />
+
+        </VerticalStackLayout>
+        <Grid Grid.Row="1">
+            <Button Text="Logout" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
+        </Grid>
+    </Grid>
 </ContentPage>
