@@ -23,6 +23,7 @@
                                  VerticalOptions="Start"
                                  WidthRequest="50"
                                  CornerRadius="10"
+                                 Command="{Binding VolverCommand}"
                                  Source="Resources/Images/dp_return.png"/>
 
                     <ImageButton Grid.Column="1"

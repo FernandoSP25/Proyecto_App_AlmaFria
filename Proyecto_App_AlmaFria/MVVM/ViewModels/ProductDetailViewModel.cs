@@ -32,7 +32,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 		private async Task Volver()
 		{
-			await Shell.Current.GoToAsync("//MenuPage");
+			await Shell.Current.GoToAsync("//LoginPage");
 		}
 
 	}

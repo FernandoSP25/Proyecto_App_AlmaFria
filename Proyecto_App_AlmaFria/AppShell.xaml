@@ -6,21 +6,14 @@
         xmlns:local="clr-namespace:Proyecto_App_AlmaFria"
         xmlns:views="clr-namespace:Proyecto_App_AlmaFria.Views"
         Title="Proyecto_App_AlmaFria"
-        Shell.FlyoutBehavior="Disabled"
-        Shell.NavBarIsVisible="False">
+
+        Shell.NavBarIsVisible="True">
 
     <ShellContent
         Title="Inicio"
         ContentTemplate="{DataTemplate views:LoginPage}"
-        Route="LoginPage" />
-    <ShellContent
-        Title="Crear cuenta"
-        ContentTemplate="{DataTemplate views:CreateAccountPage}"
-        Route="CreateAccountPage" />
-    <ShellContent Title="Menu"
-                    ContentTemplate="{DataTemplate views:MenuPage}"
-                    Route="MenuPage" />
-    <ShellContent Title="Detalle productos" ContentTemplate="{DataTemplate views:ProductDetailPage}"
-                      Route="ProductDetailPage" />
+        Route="LoginPage" >
+    </ShellContent>
 
+ 
 </Shell>
