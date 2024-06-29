@@ -21,8 +21,11 @@
         <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate views:AccountPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="About">
+    <FlyoutItem Title="Historial de compras">
         <ShellContent ContentTemplate="{DataTemplate views1:PurchaseHistoryPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="About">
+        <ShellContent ContentTemplate="{DataTemplate views1:AboutPage}" />
     </FlyoutItem>
 
 

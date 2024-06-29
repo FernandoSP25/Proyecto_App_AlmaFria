@@ -31,6 +31,8 @@ public partial class Colaboradore
 
     public string? Observaciones { get; set; }
 
+    public string? ImagenPerfil { get; set; }
+
     public virtual Cargo CargoNavigation { get; set; } = null!;
 
     public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
