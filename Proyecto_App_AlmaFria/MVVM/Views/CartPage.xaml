@@ -10,10 +10,9 @@
     <Grid RowDefinitions="0.1*,0.6*,0.2*">
         <!-- Header -->
         <Grid Grid.Row="0">
-            <Grid ColumnDefinitions="0.2*,0.8*">
-                <Button Text="&#x2190;" HorizontalOptions="Center" FontSize="40" VerticalOptions="CenterAndExpand" BackgroundColor="{StaticResource BackGroundColor}" TextColor="{StaticResource Pink3}" />
-                <Label Grid.Column="1" Text="Your Cart" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{StaticResource Pink3}" />
-            </Grid>
+
+                <Label  Text="Your Cart" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{StaticResource Pink3}" />
+
         </Grid>
 
         <!-- Cart Items -->

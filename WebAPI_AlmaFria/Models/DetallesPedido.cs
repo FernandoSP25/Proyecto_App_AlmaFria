@@ -15,6 +15,8 @@ public partial class DetallesPedido
 
     public string Observaciones { get; set; } = null!;
 
+    public decimal? PrecioTotal { get; set; }
+
     public virtual Pedido IdPedidoNavigation { get; set; } = null!;
 
     public virtual Producto IdProductoNavigation { get; set; } = null!;

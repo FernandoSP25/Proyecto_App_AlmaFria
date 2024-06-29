@@ -51,7 +51,9 @@ public partial class PaleteriaDbContext : DbContext
 
     public virtual DbSet<UnidadesMedidum> UnidadesMedida { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=tcp:bdalmafriaserver.database.windows.net,1433;Initial Catalog=DBAlmaFria;Persist Security Info=False;User ID=pintosupnbd;Password=proyectoUPN2024;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -62,10 +64,17 @@ public partial class PaleteriaDbContext : DbContext
             entity.Property(e => e.IdBoleta)
                 .ValueGeneratedNever()
                 .HasColumnName("ID_Boleta");
+            entity.Property(e => e.BoletaEstado)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("Boleta_estado");
             entity.Property(e => e.Dni)
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("DNI");
+            entity.Property(e => e.DocumentId)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.FechaEmision).HasColumnName("Fecha_Emision");
             entity.Property(e => e.Hora)
                 .HasMaxLength(10)
@@ -80,6 +89,7 @@ public partial class PaleteriaDbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.SubTotal).HasColumnType("decimal(8, 2)");
             entity.Property(e => e.Total).HasColumnType("decimal(8, 2)");
+            entity.Property(e => e.Xml).HasMaxLength(2048);
 
             entity.HasOne(d => d.IdPedidoNavigation).WithMany(p => p.Boleta)
                 .HasForeignKey(d => d.IdPedido)
@@ -102,6 +112,9 @@ public partial class PaleteriaDbContext : DbContext
             entity.HasKey(e => e.IdCategoria).HasName("PK__Categori__02AA07851334C456");
 
             entity.Property(e => e.IdCategoria).HasColumnName("ID_Categoria");
+            entity.Property(e => e.Imageurlc)
+                .HasMaxLength(255)
+                .IsUnicode(false);
             entity.Property(e => e.Nombre).HasMaxLength(50);
         });
 
@@ -122,6 +135,7 @@ public partial class PaleteriaDbContext : DbContext
             entity.Property(e => e.Direccion).HasMaxLength(100);
             entity.Property(e => e.Estado).HasDefaultValue(true);
             entity.Property(e => e.FechaNacimiento).HasColumnName("Fecha_Nacimiento");
+            entity.Property(e => e.ImagenPerfil).HasMaxLength(2048);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.NumeroDocumento)
                 .HasMaxLength(20)
@@ -148,6 +162,7 @@ public partial class PaleteriaDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("Correo_Electronico");
             entity.Property(e => e.FechaIngreso).HasColumnName("Fecha_Ingreso");
+            entity.Property(e => e.ImagenPerfil).HasMaxLength(2048);
             entity.Property(e => e.Nombre).HasMaxLength(50);
             entity.Property(e => e.NumeroDocumento)
                 .HasMaxLength(20)
@@ -249,6 +264,9 @@ public partial class PaleteriaDbContext : DbContext
             entity.Property(e => e.IdPedido).HasColumnName("ID_Pedido");
             entity.Property(e => e.IdProducto).HasColumnName("ID_Producto");
             entity.Property(e => e.Observaciones).HasMaxLength(255);
+            entity.Property(e => e.PrecioTotal)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("Precio_total");
 
             entity.HasOne(d => d.IdPedidoNavigation).WithMany(p => p.DetallesPedidos)
                 .HasForeignKey(d => d.IdPedido)
@@ -274,6 +292,13 @@ public partial class PaleteriaDbContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("DireccionFiscal_Emisor");
+            entity.Property(e => e.DocumentId)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.FacturaEstado)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("Factura_estado");
             entity.Property(e => e.FechaEmision).HasColumnName("Fecha_Emision");
             entity.Property(e => e.Hora)
                 .HasMaxLength(10)
@@ -304,6 +329,7 @@ public partial class PaleteriaDbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.SubTotal).HasColumnType("decimal(8, 2)");
             entity.Property(e => e.Total).HasColumnType("decimal(8, 2)");
+            entity.Property(e => e.Xml).HasMaxLength(2048);
 
             entity.HasOne(d => d.IdPedidosNavigation).WithMany(p => p.Facturas)
                 .HasForeignKey(d => d.IdPedidos)
@@ -413,6 +439,9 @@ public partial class PaleteriaDbContext : DbContext
             entity.Property(e => e.IdProductos).HasColumnName("ID_Productos");
             entity.Property(e => e.ActivoProducto)
                 .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Imageurl)
+                .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.NombreProducto)
                 .HasMaxLength(50)

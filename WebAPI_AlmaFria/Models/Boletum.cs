@@ -25,5 +25,11 @@ public partial class Boletum
 
     public decimal Total { get; set; }
 
+    public string? BoletaEstado { get; set; }
+
+    public string? DocumentId { get; set; }
+
+    public string? Xml { get; set; }
+
     public virtual Pedido IdPedidoNavigation { get; set; } = null!;
 }

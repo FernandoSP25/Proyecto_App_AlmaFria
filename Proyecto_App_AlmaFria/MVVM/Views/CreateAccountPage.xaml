@@ -47,7 +47,7 @@
                        HorizontalOptions="Center" />
                         <Entry Grid.Column="1"
                        Placeholder="NOMBRES"
-                       Text=""
+                       Text="{Binding Nombre}"
                        TextColor="{StaticResource GrayText}"
                        VerticalOptions="Center"/>
                     </Grid>
@@ -66,7 +66,7 @@
                        HorizontalOptions="Center" />
                         <Entry Grid.Column="1"
                        Placeholder="APELLIDOS"
-                       Text=""
+                       Text="{Binding Apellido}"
                        TextColor="{StaticResource GrayText}"
                        VerticalOptions="Center"/>
                     </Grid>
@@ -147,7 +147,7 @@
                        HorizontalOptions="Center" />
                         <Entry Grid.Column="1"
                        Placeholder="USER_NAME"
-                       Text=""
+                       Text="{Binding Username}"
                        TextColor="{StaticResource GrayText}"
                        VerticalOptions="Center"/>
                     </Grid>
@@ -165,8 +165,8 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Center" />
                         <Entry Grid.Column="1"
-                       Placeholder="EMAIL"
-                       Text=""
+                       Placeholder="Correo Electronico"
+                       Text="{Binding CorreoElectronico}"
                        TextColor="{StaticResource GrayText}"
                        VerticalOptions="Center"/>
                     </Grid>
@@ -187,7 +187,7 @@
                         <Entry Grid.Column="1"
                        Placeholder="PASSWORD"
                        IsPassword="True"
-                       Text=""
+                       Text="{Binding Contrasenia}"
                        TextColor="{StaticResource GrayText}"
                        VerticalOptions="Center"/>
                     </Grid>
@@ -208,7 +208,7 @@
                       Grid.Column="1"
                       Placeholder="CONFIRM PASSWORD"
                       IsPassword="True"
-                      Text=""
+                      Text="{Binding ConfirmContrasenia}"
                       TextColor="{StaticResource GrayText}"
                       VerticalOptions="Center"/>
                     </Grid>
