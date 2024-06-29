@@ -2,46 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.ProductDetailPage"
-             Title="ProductDetailPage"
+             Title="Regresar"
              BackgroundColor="{StaticResource Pink1}">
+    <ScrollView>
+        <Grid Margin="20" RowDefinitions=".7*,100,.1*,.2*">
 
-    <Grid Margin="15" RowDefinitions=".4*,.1*,.1*,.4*">
-
-        <Border Grid.RowSpan="2">
+        <Border  Grid.Row="0" Grid.RowSpan="2">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20,20,20,20"/>
             </Border.StrokeShape>
-            <Grid RowDefinitions=".3*,.7*">
-                <Image Grid.RowSpan="2" 
+                <Grid>
+                    <Image Grid.Column="0"
                        Aspect="AspectFill"
-                       Source="{Binding Product.Imageurl}"/>
-                <Grid ColumnDefinitions="*,*">
-                    <ImageButton Margin="15,35,0,0"
-                                 BackgroundColor="{StaticResource Pink1}"
-                                 HeightRequest="50"
-                                 HorizontalOptions="Start"
-                                 VerticalOptions="Start"
-                                 WidthRequest="50"
-                                 CornerRadius="10"
-
-                                 Source="Resources/Images/dp_return.png"
-                                 Command="{Binding VolverCommand}"/>
-
-
+                       Margin="2,1,3,100"
+                       Source="{Binding Product.Imageurl}"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center" />
                     <ImageButton Grid.Column="1"
-                                 Margin="0,35,15,0"
-                                 BackgroundColor="{StaticResource Pink1}"
-                                 HeightRequest="50"
-                                 HorizontalOptions="End"
-                                 VerticalOptions="Start"
-                                 WidthRequest="50"
-                                 CornerRadius="10"
-                                 Source="Resources/Images/dp_favorite.png"/>
-                </Grid>
-            </Grid>
+                         Margin="0,35,15,0"
+                         BackgroundColor="{StaticResource Pink1}"
+                         HeightRequest="50"
+                         HorizontalOptions="End"
+                         VerticalOptions="Start"
+                         WidthRequest="50"
+                         CornerRadius="10"
+                         Source="Resources/Images/dp_favorite.png" />
+                 </Grid>
+            
+            
         </Border>
-        
-        <!--BLOQUE DE MEJORA XD-->
+
         <Border Grid.Row="1"
                 Grid.RowSpan="2"
                 Stroke="{StaticResource Pink2}">
@@ -49,7 +39,7 @@
                 <RoundRectangle CornerRadius="30,30,30,30"/>
             </Border.StrokeShape>
 
-            <Grid Padding="18"
+            <Grid Padding="20"
                     BackgroundColor="{StaticResource Pink2}"
                     ColumnDefinitions=".5*,.25*,.25*"
                     RowDefinitions="*,*">
@@ -57,26 +47,20 @@
                 <Label Grid.ColumnSpan="2"
                             FontAttributes="Bold"
                             FontFamily="NexaHeavy"
-                            FontSize="20"
+                            FontSize="18"
                             Text="{Binding Product.NombreProducto}"
                             VerticalTextAlignment="Center"
                             TextColor="White"/>
 
-                <Label Grid.Column="2"
+                <Label Grid.Column="3"
                             FontAttributes="Bold"
                             FontFamily="NexaHeavy"
-                            FontSize="20"
+                            FontSize="17"
                             HorizontalTextAlignment="Center"
                             VerticalTextAlignment="Center"
-                            Text="S/. 50"
+                            Text="{Binding Product.PrecioVenta, StringFormat='S/. {0:F2}'}"
                             TextColor="White"/>
 
-                <!--<Label Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            FontFamily=""
-                            FontSize="15"
-                            Text="Descripción"
-                            TextColor="White"/>-->
 
                 <HorizontalStackLayout Grid.Row="2" Spacing="10" Margin="12,10,0,0">
                     <Image Grid.RowSpan="7"
@@ -129,4 +113,5 @@
             </VerticalStackLayout>
         </Grid>
     </Grid>
+    </ScrollView>
 </ContentPage>
