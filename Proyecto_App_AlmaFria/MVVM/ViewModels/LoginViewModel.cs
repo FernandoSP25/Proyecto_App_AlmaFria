@@ -2,9 +2,11 @@
 using CommunityToolkit.Mvvm.Input;
 using Proyecto_App_AlmaFria.Generic;
 using Proyecto_App_AlmaFria.MVVM.Models;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
+using Proyecto_App_AlmaFria.Services;
+using Proyecto_App_AlmaFria.Utilities;
+using Proyecto_App_AlmaFria.Views;
+
 #if ANDROID
 using Android.App;
 using Android.Net.Wifi;
@@ -17,6 +19,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 	public partial class LoginViewModel : ObservableObject
 	{
+
 
 		[ObservableProperty]
 		private string email;
@@ -45,7 +48,8 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 		private async Task Login()
 		{
-			//if (!IsValidEmail(Email))
+			//if (!ValidEmail.IsValidEmail(Email))
+
 			//{
 			//	ErrorMessage = "Please enter a valid email address.";
 			//	IsErrorVisible = true;
@@ -81,6 +85,10 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			//	if (result > 0)
 			//	{
 			//		// Manejar el éxito del inicio de sesión
+			//		Preferences.Set("UserId", response.IdCliente);
+			//		Preferences.Set("UserName", response.Nombre);
+			//		Preferences.Set("UserApellido", response.Apellido);
+			//		Preferences.Set("UserCorreoElectronico", response.CorreoElectronico);
 			//		await Shell.Current.GoToAsync("//MenuPage");
 			//	}
 			//	else if (result == -1)
@@ -98,13 +106,14 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			//	ErrorMessage = "Invalid credentials. Please try again.";
 			//}
 
-			await Shell.Current.GoToAsync("//MenuPage");
+			App.Current.MainPage = new MenuPage();
+	
 
 		}
 
 		private async Task Signup()
 		{
-			await Shell.Current.GoToAsync("//CreateAccountPage");
+			await Shell.Current.GoToAsync("CreateAccountPage");
 		}
 
 		private string GenerateSessionToken()
@@ -129,50 +138,6 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			var deviceInfo = $"Model: {DeviceInfo.Model}, Manufacturer: {DeviceInfo.Manufacturer}, Name: {DeviceInfo.Name}, OS: {DeviceInfo.VersionString}";
 			return deviceInfo;
 		}
-		public  bool IsValidEmail(string email)
-		{
-			if (string.IsNullOrWhiteSpace(email))
-				return false;
-
-			try
-			{
-				// Normalize the domain
-				email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
-									  RegexOptions.None, TimeSpan.FromMilliseconds(200));
-
-				// Examines the domain part of the email and normalizes it.
-				string DomainMapper(Match match)
-				{
-					// Use IdnMapping class to convert Unicode domain names.
-					var idn = new IdnMapping();
-
-					// Pull out and process domain name (throws ArgumentException on invalid)
-					string domainName = idn.GetAscii(match.Groups[2].Value);
-
-					return match.Groups[1].Value + domainName;
-				}
-			}
-			catch (RegexMatchTimeoutException e)
-			{
-				return false;
-			}
-			catch (ArgumentException e)
-			{
-				return false;
-			}
-
-			try
-			{
-				return Regex.IsMatch(email,
-					@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-					RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-			}
-			catch (RegexMatchTimeoutException)
-			{
-				return false;
-			}
-		}
-
 
 	}
 }

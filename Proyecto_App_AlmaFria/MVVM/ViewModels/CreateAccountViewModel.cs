@@ -4,19 +4,14 @@ using Newtonsoft.Json;
 using Proyecto_App_AlmaFria.Generic;
 using Proyecto_App_AlmaFria.MVVM.Models;
 using Proyecto_App_AlmaFria.Utilities;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 {
-	public partial class CreateAccountViewModel: ObservableObject
+	public partial class CreateAccountViewModel : ObservableObject
 	{
 		[ObservableProperty]
 		private string nombre;
@@ -36,18 +31,13 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		[ObservableProperty]
 		private string confirmContrasenia;
 
-
 		[ObservableProperty]
 		private DateTime fechaNacimiento;
 
 		[ObservableProperty]
 		private string sexo;
 
-		[ObservableProperty]
-		private string direccion;
 
-		[ObservableProperty]
-		private string tipoDocumento;
 		[ObservableProperty]
 		private DocumentOption selectedTipoDocumento;
 
@@ -60,13 +50,15 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		[ObservableProperty]
 		private DateTime maximumDate;
 
+		[ObservableProperty]
+		private string errorMessage;
+
 		public ObservableCollection<string> SexOptions { get; } = new ObservableCollection<string>
 		{
 			"Masculino",
 			"Femenino",
 			"Otro"
 		};
-
 
 		public ObservableCollection<DocumentOption> DocumentOptions { get; } = new ObservableCollection<DocumentOption>
 		{
@@ -82,6 +74,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			CreateAccountCommand = new AsyncRelayCommand(CreateAccountAsync);
 			MaximumDate = DateTime.Now.AddYears(-18);
 		}
+
 		private bool IsValidDNI(string dni)
 		{
 			return Regex.IsMatch(dni, @"^\d{8}$");
@@ -91,6 +84,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		{
 			return Regex.IsMatch(phoneNumber, @"^9\d{8}$");
 		}
+
 		private bool IsPasswordStrong(string password)
 		{
 			if (password.Length < 8) return false; // Al menos 8 caracteres
@@ -101,6 +95,13 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 			return true;
 		}
+
+		private bool IsValidUsername(string username)
+		{
+			return Regex.IsMatch(username, @"^[a-zA-Z0-9]+$");
+		}
+
+
 		private async Task<bool> ValidateInputs()
 		{
 			if (string.IsNullOrWhiteSpace(Nombre))
@@ -131,18 +132,18 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			}
 			if (string.IsNullOrWhiteSpace(NumeroDocumento) || !IsValidDNI(NumeroDocumento))
 			{
-				await App.Current.MainPage.DisplayAlert("Error", "El campo Número de Documento es obligatorio.", "OK");
+				await App.Current.MainPage.DisplayAlert("Error", "El campo Número de Documento es obligatorio y debe ser válido.", "OK");
 				return false;
 			}
 			if (string.IsNullOrWhiteSpace(Telefono) || !IsValidPhoneNumber(Telefono))
 			{
-				await App.Current.MainPage.DisplayAlert("Error", "El campo Telefono es obligatorio.", "OK");
+				await App.Current.MainPage.DisplayAlert("Error", "El campo Telefono es obligatorio y debe ser válido.", "OK");
 				return false;
 			}
 
-			if (string.IsNullOrWhiteSpace(Username))
+			if (string.IsNullOrWhiteSpace(Username) || !IsValidUsername(Username))
 			{
-				await App.Current.MainPage.DisplayAlert("Error", "El campo Username es obligatorio.", "OK");
+				await App.Current.MainPage.DisplayAlert("Error", "El campo Username es obligatorio y solo debe contener letras y números.", "OK");
 				return false;
 			}
 			if (string.IsNullOrWhiteSpace(CorreoElectronico))
@@ -174,12 +175,16 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			return true;
 		}
 
-
-
 		private async Task CreateAccountAsync()
 		{
 			if (!await ValidateInputs())
 				return;
+
+			if (!ValidEmail.IsValidEmail(CorreoElectronico))
+			{
+				await App.Current.MainPage.DisplayAlert("Error", "Por favor, introduce una dirección de correo válida.", "OK");
+				return;
+			}
 
 			var newUser = new ClientModel
 			{
@@ -190,38 +195,36 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 				Contrasenia = Contrasenia,
 				FechaNacimiento = new DateOnly(FechaNacimiento.Year, FechaNacimiento.Month, FechaNacimiento.Day),
 				Sexo = Sexo,
-				Direccion = Direccion,
 				TipoDocumento = SelectedTipoDocumento.Key,
 				NumeroDocumento = NumeroDocumento,
 				Telefono = Telefono,
 				Estado = true
 			};
-			var json = JsonConvert.SerializeObject(newUser);
-			var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+			//var json = JsonConvert.SerializeObject(newUser);
+			//var content = new StringContent(json, Encoding.UTF8, "application/json");
 
 			try
 			{
-				var response = await Http.Post("https://almafriaproyect.azurewebsites.net/api/auth/register", content);
+				var response = await Http.Post("https://almafriaproyect.azurewebsites.net/api/auth/register", newUser);
 
-				if (response >0)
+				if (response > 0)
 				{
-					await App.Current.MainPage.DisplayAlert("Success", "Account created successfully.", "OK");
+					await App.Current.MainPage.DisplayAlert("Success", "Cuenta creada exitosamente.", "OK");
 					await Shell.Current.GoToAsync("//LoginPage");
 				}
 				else
 				{
-					await App.Current.MainPage.DisplayAlert("Error", $"Failed to create account", "OK");
+					await App.Current.MainPage.DisplayAlert("Error", "Error al crear la cuenta.", "OK");
 				}
 			}
 			catch (Exception ex)
 			{
-				await App.Current.MainPage.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+				await App.Current.MainPage.DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
 			}
 		}
 
 		[RelayCommand]
 		async Task Salir() => await Shell.Current.GoToAsync("//LoginPage");
-
-
 	}
 }

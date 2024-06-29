@@ -77,9 +77,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		{
 			try
 			{
-				var products = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
-                Products = products.Where(p => p.Categoria != 4).OrderBy(p => p.NombreProducto).ToList();
-
+				Products = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
 
                 //listatotal = Products;
 
@@ -116,7 +114,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 				{
 					{ "Product", SelectedProduct }
 				};
-				await Shell.Current.GoToAsync("//ProductDetailPage", navigationParameter);
+				await Shell.Current.GoToAsync("//MenuPage/SearchPage/ProductDetailPage", navigationParameter);
 			}
 		}
 	}

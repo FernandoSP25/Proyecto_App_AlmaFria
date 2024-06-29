@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Proyecto_App_AlmaFria.Services;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 
@@ -26,6 +27,8 @@ namespace Proyecto_App_AlmaFria
 
 #if DEBUG
 			builder.Logging.AddDebug();
+			builder.Services.AddSingleton<UserSessionService>();
+
 #endif
 			return builder.Build();
 		}

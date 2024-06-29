@@ -12,20 +12,20 @@
             <Image Source="applogo.png" Aspect="AspectFit" HeightRequest="50" VerticalOptions="Center"/>
         </Grid>
     </Shell.FlyoutHeader>
+    <FlyoutItem Title="Home"  Route="MenuPage">
+        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate views:HomePage}"  Route="HomePage"/>
+        <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" Route="FavoritesPage"/>
+        <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}"  Route="SearchPage"/>
+        <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" Route="CartPage" />
+        <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate views:AccountPage}" Route="AccountPage" />
 
-    <FlyoutItem Title="Home" >
-        <ShellContent Title="Inicio" ContentTemplate="{DataTemplate views:HomePage}" />
-        <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" />
-        <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}"/>
-        <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" />
-        <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate views:AccountPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Historial de compras">
-        <ShellContent ContentTemplate="{DataTemplate views1:PurchaseHistoryPage}" />
+        <ShellContent ContentTemplate="{DataTemplate views1:PurchaseHistoryPage}" Route="PurchaseHistoryPage"/>
     </FlyoutItem>
     <FlyoutItem Title="About">
-        <ShellContent ContentTemplate="{DataTemplate views1:AboutPage}" />
+        <ShellContent ContentTemplate="{DataTemplate views1:AboutPage}" Route="AboutPage" />
     </FlyoutItem>
     
 </Shell>

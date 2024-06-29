@@ -5,5 +5,7 @@ public partial class MenuPage : Shell
 	public MenuPage()
 	{
 		InitializeComponent();
+
+		Routing.RegisterRoute("ProductDetailPage", typeof(ProductDetailPage));
 	}
 }

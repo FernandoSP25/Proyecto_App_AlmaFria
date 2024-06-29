@@ -51,10 +51,7 @@ public partial class PaleteriaDbContext : DbContext
 
     public virtual DbSet<UnidadesMedidum> UnidadesMedida { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=tcp:bdalmafriaserver.database.windows.net,1433;Initial Catalog=DBAlmaFria;Persist Security Info=False;User ID=pintosupnbd;Password=proyectoUPN2024;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Boletum>(entity =>
@@ -440,6 +437,9 @@ public partial class PaleteriaDbContext : DbContext
             entity.Property(e => e.ActivoProducto)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.DescripcionProducto)
+                .IsUnicode(false)
+                .HasColumnName("Descripcion_producto");
             entity.Property(e => e.Imageurl)
                 .HasMaxLength(255)
                 .IsUnicode(false);

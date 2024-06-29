@@ -105,7 +105,7 @@
                         <Image Source="document.png" Aspect="AspectFit" HeightRequest="40"
                                VerticalOptions="Center" HorizontalOptions="Center" />
                         <Picker Grid.Column="1" Title="TIPO DE DOCUMENTO" ItemsSource="{Binding DocumentOptions}"
-                               SelectedItem="{Binding TipoDocumento}" TextColor="{StaticResource GrayText}"
+                               SelectedItem="{Binding SelectedTipoDocumento}" TextColor="{StaticResource GrayText}"
                                VerticalOptions="Center"/>
                     </Grid>
 
