@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 }
 
 
-
+//PRODUCTOS 
 app.MapGet("/api/productos", async (PaleteriaDbContext bd) =>
 {
 	return await bd.Productos.ToListAsync();
@@ -52,6 +52,12 @@ app.MapGet("/productos/buscarnombre/{nombreproducto}", async (string nombreprodu
 	return Results.Ok(productos);
 
 }).AddEndpointFilter<FilterEmpty>().AddEndpointFilter<FilterString>();
+
+//CATEGORIA
+app.MapGet("/api/categoria", async (PaleteriaDbContext bd) =>
+{
+	return await bd.Categorias.ToListAsync();
+});
 
 
 //LOGIN
@@ -95,7 +101,7 @@ app.MapPost("/api/auth/register", async (Cliente user, PaleteriaDbContext bd) =>
 });
 
 
-//Salir
+//Logout
 app.MapPost("/api/auth/logout", async (int id, PaleteriaDbContext bd) =>
 {
 	var loginRecord = await bd.Logins.FindAsync(id);

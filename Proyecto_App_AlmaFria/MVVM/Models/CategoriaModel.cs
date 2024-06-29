@@ -8,8 +8,11 @@ namespace Proyecto_App_AlmaFria.MVVM.Models
 {
     public class CategoriaModel
     {
-		public int idCategoria { get; set; }
-		public  string NombreCategoria { get; set; }
-		public  string Icon { get; set; }
+		public int IdCategoria { get; set; }
+
+		public string Nombre { get; set; } = null!;
+
+		public string? Imageurlc { get; set; }
+
 	}
 }
