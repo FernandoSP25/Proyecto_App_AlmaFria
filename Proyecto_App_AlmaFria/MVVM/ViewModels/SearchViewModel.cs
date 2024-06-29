@@ -62,7 +62,6 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
             }
             catch (Exception ex)
 			{
-				// Maneja el error, por ejemplo, mostrando un mensaje de error
 				Console.WriteLine($"Error al listar productos: {ex.Message}");
 			}
 		}
