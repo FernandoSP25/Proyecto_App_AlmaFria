@@ -77,11 +77,10 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		{
 			try
 			{
-				Products = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
+                var productos = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
+                Products = productos.Where(p => p.Categoria != 4).OrderBy(p => p.NombreProducto).ToList();
 
                 //listatotal = Products;
-
-
                 //var productos = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
                 //Products = new ObservableCollection<ProductModel>(productos);
 

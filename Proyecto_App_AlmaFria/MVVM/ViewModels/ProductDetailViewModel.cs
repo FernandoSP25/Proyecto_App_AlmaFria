@@ -32,5 +32,5 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		{
 			await Shell.Current.GoToAsync("//LoginPage");
 		}
-
+    }
 }
