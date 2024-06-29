@@ -3,14 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.SearchPage"
              Title="SearchPage">
-    <VerticalStackLayout>
-        <SearchBar Text="{Binding SearchText}" Placeholder="Buscar productos..." />
-        <ListView SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" ItemTapped="ListView_ItemTapped">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding NombreProducto}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <SearchBar Text="{Binding SearchText}" Placeholder="Buscar productos..." />
+            <ListView SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" ItemTapped="ListView_ItemTapped" Margin="20" RowHeight="70">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Source="{Binding Imageurl}" WidthRequest="60" HeightRequest="60" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Padding="10,0">
+                                    <Label Text="{Binding NombreProducto}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

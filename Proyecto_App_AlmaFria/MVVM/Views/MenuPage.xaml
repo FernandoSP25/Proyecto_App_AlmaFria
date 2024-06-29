@@ -12,13 +12,13 @@
             <Image Source="applogo.png" Aspect="AspectFit" HeightRequest="50" VerticalOptions="Center"/>
         </Grid>
     </Shell.FlyoutHeader>
-
     <FlyoutItem Title="Home"  Route="MenuPage">
         <ShellContent Title="Inicio" ContentTemplate="{DataTemplate views:HomePage}"  Route="HomePage"/>
         <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" Route="FavoritesPage"/>
         <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}"  Route="SearchPage"/>
         <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" Route="CartPage" />
         <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate views:AccountPage}" Route="AccountPage" />
+
     </FlyoutItem>
 
     <FlyoutItem Title="Historial de compras">

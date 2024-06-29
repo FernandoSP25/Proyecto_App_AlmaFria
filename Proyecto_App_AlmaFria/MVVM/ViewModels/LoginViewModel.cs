@@ -49,6 +49,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		private async Task Login()
 		{
 			//if (!ValidEmail.IsValidEmail(Email))
+
 			//{
 			//	ErrorMessage = "Please enter a valid email address.";
 			//	IsErrorVisible = true;
@@ -106,7 +107,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			//}
 
 			App.Current.MainPage = new MenuPage();
-			
+	
 
 		}
 

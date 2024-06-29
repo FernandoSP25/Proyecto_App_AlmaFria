@@ -33,39 +33,36 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		}
 
 
-		private List<ProductModel> _products;
-		public List<ProductModel> Products
-		{
-			get
-			{
-				return _products;
-			}
-			set
-			{
-				SetProperty(ref _products, value);
-			}
-		}
 
-		private List<ProductModel> listatotal;
-		//private List<ProductCLS> listaProduct;
-		//public ProductModel oProductModel { get; set; }
-		//public string nombreCategoria { get; set; }
+        private List<ProductModel> _products;
 
-		//public ProductCLS oCategoriaCLS { get; set; }
+        public List<ProductModel> Products
+        {
+            get => _products;
+            set => SetProperty(ref _products, value);
+        }
+
+        //private List<ProductModel> listatotal;
+
+        //private List<ProductCLS> listaProduct;
+        //public ProductModel oProductModel { get; set; }
+        //public string nombreCategoria { get; set; }
+
+        //public ProductCLS oCategoriaCLS { get; set; }
 
 
-		//private ObservableCollection<ProductModel> _products;
-		//public ObservableCollection<ProductModel> Products
-		//{
-		//	get => _products;
-		//	set
-		//	{
-		//		SetProperty(ref _products, value);
-		//	}
-		//}
+        //private ObservableCollection<ProductModel> _products;
+        //public ObservableCollection<ProductModel> Products
+        //{
+        //	get => _products;
+        //	set
+        //	{
+        //		SetProperty(ref _products, value);
+        //	}
+        //}
 
 
-		public ICommand SearchCommand { get; }
+        public ICommand SearchCommand { get; }
 		public ICommand ProductTappedCommand { get; }
 
 		public SearchViewModel()
@@ -82,11 +79,14 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			{
 				Products = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
 
+                //listatotal = Products;
 
-				//var productos = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
-				//Products = new ObservableCollection<ProductModel>(productos);
-			}
-			catch (Exception ex)
+
+                //var productos = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
+                //Products = new ObservableCollection<ProductModel>(productos);
+
+            }
+            catch (Exception ex)
 			{
 				// Maneja el error, por ejemplo, mostrando un mensaje de error
 				Console.WriteLine($"Error al listar productos: {ex.Message}");
