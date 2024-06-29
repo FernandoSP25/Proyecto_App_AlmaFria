@@ -121,7 +121,7 @@
                         <FormattedString>
                             <Span 
                                 FontFamily=""
-                                Text="{Binding Product.NombreProducto}"
+                                Text="{Binding Product.DescripcionProducto}"
                                 TextColor="{StaticResource Pink3}"/>
                         </FormattedString>
                     </Label.FormattedText>
