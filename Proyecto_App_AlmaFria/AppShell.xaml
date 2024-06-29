@@ -13,14 +13,25 @@
         Title="Inicio"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage" />
+    
     <ShellContent
         Title="Crear cuenta"
         ContentTemplate="{DataTemplate views:CreateAccountPage}"
         Route="CreateAccountPage" />
-    <ShellContent Title="Menu"
-                    ContentTemplate="{DataTemplate views:MenuPage}"
-                    Route="MenuPage" />
-    <ShellContent Title="Detalle productos" ContentTemplate="{DataTemplate views:ProductDetailPage}"
-                      Route="ProductDetailPage" />
+
+    <ShellContent 
+        Title="Menu"
+        ContentTemplate="{DataTemplate views:MenuPage}"
+        Route="MenuPage" />
+
+    <ShellContent
+            Title="Buscar"
+            Route="SearchPage"
+            ContentTemplate="{DataTemplate views:SearchPage}" />
+    
+    <ShellContent
+            Title="Detalle productos"
+            Route="ProductDetailPage"
+            ContentTemplate="{DataTemplate views:ProductDetailPage}" />
 
 </Shell>
