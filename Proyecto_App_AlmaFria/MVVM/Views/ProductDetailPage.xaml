@@ -14,7 +14,7 @@
             <Grid RowDefinitions=".3*,.7*">
                 <Image Grid.RowSpan="2" 
                        Aspect="AspectFill"
-                       Source="Resources/Images/paleta.png"/>
+                       Source="{Binding Product.Imageurl}"/>
                 <Grid ColumnDefinitions="*,*">
                     <ImageButton Margin="15,35,0,0"
                                  BackgroundColor="{StaticResource Pink1}"
@@ -23,7 +23,8 @@
                                  VerticalOptions="Start"
                                  WidthRequest="50"
                                  CornerRadius="10"
-                                 Source="Resources/Images/dp_return.png"/>
+                                 Source="Resources/Images/dp_return.png"
+                                 Command="{Binding VolverCommand}"/>
 
                     <ImageButton Grid.Column="1"
                                  Margin="0,35,15,0"
@@ -118,7 +119,7 @@
                         <FormattedString>
                             <Span 
                                 FontFamily=""
-                                Text="NO SE QUE PONER ACA"
+                                Text="{Binding Product.NombreProducto}"
                                 TextColor="{StaticResource Pink3}"/>
                         </FormattedString>
                     </Label.FormattedText>

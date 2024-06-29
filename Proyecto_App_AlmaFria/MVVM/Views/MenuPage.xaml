@@ -16,7 +16,7 @@
     <FlyoutItem Title="Home" >
         <ShellContent Title="Inicio" ContentTemplate="{DataTemplate views:HomePage}" />
         <ShellContent Title="Favoritos" ContentTemplate="{DataTemplate views:FavoritesPage}" />
-        <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}" />
+        <ShellContent Title="Buscar" ContentTemplate="{DataTemplate views:SearchPage}"/>
         <ShellContent Title="Mi Carrito" ContentTemplate="{DataTemplate views:CartPage}" />
         <ShellContent Title="Cuenta" ContentTemplate="{DataTemplate views:AccountPage}" />
     </FlyoutItem>
@@ -27,6 +27,5 @@
     <FlyoutItem Title="About">
         <ShellContent ContentTemplate="{DataTemplate views1:AboutPage}" />
     </FlyoutItem>
-
-
+    
 </Shell>
