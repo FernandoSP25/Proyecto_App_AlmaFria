@@ -3,16 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
              x:Class="Proyecto_App_AlmaFria.Views.HomePage"
-             Title="HomePage"
-             BackgroundColor="{StaticResource Pink1}">
+             Title="HomePage">
 
     <ContentPage.BindingContext>
         <viewModels:HomeViewModel />
     </ContentPage.BindingContext>
 
-    <Grid Margin="25,25,25,0" RowDefinitions="0.1*,0.2*,0.2*,0.1*,0.40*">
-        <!-- Encabezado con bienvenida --><!--
-        <Grid Margin="0,0,25,0" ColumnDefinitions="0.20*,0.70*">
+    <Grid Margin="25,10,25,0" RowDefinitions="0.1*,0.2*,0.2*,0.1*,0.4*">
+         <!--Encabezado con bienvenida--> 
+        <Grid Margin="0,5,25,0" ColumnDefinitions="0.20*,0.70*">
             <Border 
                     HeightRequest="50"
                     HorizontalOptions="Start"
@@ -25,17 +24,17 @@
                        WidthRequest="100"/>
             </Border>
             <Label 
-                    Margin="20,0,0,0"
-                    FontAttributes="Bold"
-                    FontFamily="NexaHeavy"
-                    FontSize="Medium"
-                    Grid.Column="1"
-                    HorizontalOptions="StartAndExpand"
-                    VerticalOptions="Center"
-                    Text="{Binding NombreUsuario}" 
-                    TextColor="#2D2D2D"/>
+                Margin="20,0,0,0"
+                FontAttributes="Bold"
+                FontFamily="NexaHeavy"
+                FontSize="Medium"
+                Grid.Column="1"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="Center"
+                Text="Hola , .... NAME" 
+                TextColor="#2D2D2D"/>
         </Grid>
-        --><!-- Etiquetas de bienvenida --><!--
+         <!--Etiquetas de bienvenida--> 
         <VerticalStackLayout Grid.Row="1" Margin="0,10,0,0">
             <Label FontSize="30"
                    VerticalOptions="Center"
@@ -58,39 +57,40 @@
                 <SearchBar BackgroundColor="#F8E2D9" />
             </Frame>
         </VerticalStackLayout>
-        --><!-- Colección de categorías --><!--
+         <!--Colección de categorías--> 
         <CollectionView 
             Grid.Row="2"
+            Margin="0,10,0,0"
             ItemsSource="{Binding Categorias}"
             VerticalOptions="Center">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="20" Orientation="Horizontal"/>
+                <LinearItemsLayout ItemSpacing="25" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="0.70*, 0.30*"
-                          HeightRequest="80"
-                          WidthRequest="100">
+                          HeightRequest="120"
+                          WidthRequest="100" >
                         <RoundRectangle
                             Grid.RowSpan="2"
                             CornerRadius="25"
-                            Fill="#F8E2D9"/>
+                            Fill="{StaticResource Pink1}"/>
                         <Image Aspect="AspectFit" 
                                VerticalOptions="Center"
-                               HeightRequest="50" Source="{Binding Icon}"/>
+                               HeightRequest="50" Source="{Binding Imageurlc}"/>
                         <Label Grid.Row="1"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
                                FontFamily="NexaHeavy"
                                TextColor="#DB6443"
-                               Text="{Binding NombreCategoria}"
+                               Text="{Binding Nombre}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        --><!-- Título de productos populares --><!--
+         <!--Título de productos populares--> 
         <VerticalStackLayout Grid.Row="3" Margin="0,25,0,0">
             <Label FontSize="25"
                    VerticalOptions="Center"
@@ -99,7 +99,7 @@
                    Text="Populares"
                    TextColor="#DB6443"/>
         </VerticalStackLayout>
-        --><!-- Colección de productos populares --><!--
+         <!--Colección de productos populares--> 
         <CollectionView 
     Grid.Row="4"
     ItemsSource="{Binding ProductosPopulares}"
@@ -143,6 +143,6 @@
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>-->
+        </CollectionView>
     </Grid>
 </ContentPage>
