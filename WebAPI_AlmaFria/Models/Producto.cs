@@ -31,6 +31,8 @@ public partial class Producto
 
     public string? Imageurl { get; set; }
 
+    public string? DescripcionProducto { get; set; }
+
     public virtual Categoria CategoriaNavigation { get; set; } = null!;
 
     public virtual ICollection<DetallePreparacion> DetallePreparacions { get; set; } = new List<DetallePreparacion>();

@@ -17,5 +17,9 @@ namespace Proyecto_App_AlmaFria.Utilities
 			Key = key;
 			Value = value;
 		}
+		public override string ToString()
+		{
+			return Value; 
+		}
 	}
 }

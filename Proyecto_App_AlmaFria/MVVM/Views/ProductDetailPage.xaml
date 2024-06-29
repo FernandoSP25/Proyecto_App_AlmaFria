@@ -23,8 +23,10 @@
                                  VerticalOptions="Start"
                                  WidthRequest="50"
                                  CornerRadius="10"
+
                                  Source="Resources/Images/dp_return.png"
                                  Command="{Binding VolverCommand}"/>
+
 
                     <ImageButton Grid.Column="1"
                                  Margin="0,35,15,0"

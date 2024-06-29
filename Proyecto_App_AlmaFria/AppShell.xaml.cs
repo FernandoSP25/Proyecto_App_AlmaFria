@@ -8,7 +8,7 @@ namespace Proyecto_App_AlmaFria
 		{
 
 			InitializeComponent();
-
+			Routing.RegisterRoute("LoginPage/CreateAccountPage", typeof(CreateAccountPage));
 		}
 	}
 }

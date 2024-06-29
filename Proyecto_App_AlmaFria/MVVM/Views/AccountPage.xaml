@@ -2,19 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.AccountPage"
+              xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
              Title="AccountPage">
+
+    <ContentPage.BindingContext>
+        <local:AccountViewModel />
+    </ContentPage.BindingContext>
     <Grid RowDefinitions="0.9*,0.1*">
         <VerticalStackLayout>
-
             <Label Text="Name" Margin="0,10,0,0" />
             <Entry Text="{Binding Name}" />
             <Label Text="Email" />
             <Entry Text="{Binding Email}" />
             <Label Text="Password" />
-            <Entry Text="{Binding Password}" />
+            <Entry Text="{Binding Password}" IsPassword="True" />
             <Button Text="Editar" Command="{Binding EditarCommand}" Margin="0,0,0,5" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
             <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White" />
-
         </VerticalStackLayout>
         <Grid Grid.Row="1">
             <Button Text="Logout" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
