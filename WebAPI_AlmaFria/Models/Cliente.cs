@@ -35,6 +35,8 @@ public partial class Cliente
 
     public string Sexo { get; set; } = null!;
 
+    public string? ImagenPerfil { get; set; }
+
     public virtual ICollection<Login> Logins { get; set; } = new List<Login>();
 
     public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();

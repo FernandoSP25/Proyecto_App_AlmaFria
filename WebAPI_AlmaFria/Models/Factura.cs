@@ -33,5 +33,11 @@ public partial class Factura
 
     public decimal Total { get; set; }
 
+    public string? FacturaEstado { get; set; }
+
+    public string? DocumentId { get; set; }
+
+    public string? Xml { get; set; }
+
     public virtual Pedido IdPedidosNavigation { get; set; } = null!;
 }
