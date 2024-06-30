@@ -43,21 +43,25 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
         private async Task Agregar()
         {
-            await Task.Run(() =>
-            {
+            
+     
                 int id = Product.IdProductos;
                 if(_listaCarrito.Where(p=>p.IdProductos==id).Count()>0) 
                 {
-                    System.Diagnostics.Debug.WriteLine($"El producto {Product.NombreProducto} ya fue agregado.");
+					await App.Current.MainPage.DisplayAlert("ADVERTENCIA", $"El producto {Product.NombreProducto} ya fue agregado.", "OK");
+
+					//System.Diagnostics.Debug.WriteLine($"El producto {Product.NombreProducto} ya fue agregado.");
                     return;
                 }
+
                 _listaCarrito.Add(Product);
                 Preferences.Set("carrito", JsonConvert.SerializeObject(_listaCarrito));
+			    await App.Current.MainPage.DisplayAlert("AGREGADO", $"El producto {Product.NombreProducto} ha sido agregado agregado.", "OK");
 
-                //PA VER SI SE GUARDAN JIJI
-                System.Diagnostics.Debug.WriteLine($"Producto {Product.NombreProducto} agregado.");
-                System.Diagnostics.Debug.WriteLine($"Lista actual: {string.Join(", ", _listaCarrito.Select(p => p.NombreProducto))}");
-            });
-        }
+			//PA VER SI SE GUARDAN JIJI <3
+			//System.Diagnostics.Debug.WriteLine($"Producto {Product.NombreProducto} agregado.");
+			//System.Diagnostics.Debug.WriteLine($"Lista actual: {string.Join(", ", _listaCarrito.Select(p => p.NombreProducto))}");
+
+		}
     }
 }

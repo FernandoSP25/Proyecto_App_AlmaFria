@@ -7,63 +7,65 @@
     <ContentPage.BindingContext>
         <viewModels:CartViewModel />
     </ContentPage.BindingContext>
-    <Grid RowDefinitions="0.1*,0.6*,0.2*">
-        <!-- Header -->
-        <Grid Grid.Row="0">
+    <RefreshView >
+        <Grid RowDefinitions="0.1*,0.6*,0.2*">
+            <!-- Header -->
+            <Grid Grid.Row="0">
 
                 <Label  Text="Your Cart" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{StaticResource Pink3}" />
 
+            </Grid>
+
+            <!-- Cart Items -->
+            <Grid Grid.Row="1">
+                <CollectionView x:Name="CartItemsCollectionView" BackgroundColor="{StaticResource Pink1}" ItemsSource="{Binding CartItems}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="10" Padding="10" BorderColor="{StaticResource Pink3}">
+                                <Grid ColumnDefinitions="0.2*,0.6*,0.2*">
+
+                                    <Image Source="{Binding Imageurl}"  HeightRequest="60" WidthRequest="60" />
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="{Binding Nombre}" FontSize="20" VerticalOptions="Center"  Margin="0,0,0,4"/>
+                                        <Label Text="{Binding Descripcion}" FontSize="15"  TextColor="#BDBDBD" VerticalOptions="Center" Margin="0,0,0,4"/>
+                                        <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" FontSize="18"  VerticalOptions="Center" />
+                                    </VerticalStackLayout>
+
+                                    <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center" >
+                                        <Grid RowDefinitions="*,*,*" >
+                                            <Button Grid.Row="0" Text="+" FontFamily="NexaHeavy" Background="{StaticResource Pink3}" Command="{Binding BindingContext.IncrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
+                                            <Label Grid.Row="1" Text="{Binding Cantidad}"  FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Button Grid.Row="2" Text="-"  FontFamily="NexaHeavy" Background="{StaticResource Pink1}" Command="{Binding BindingContext.DecrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
+                                        </Grid>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+            <!-- Summary -->
+            <Grid Grid.Row="2">
+                <RoundRectangle CornerRadius="30,30,0,0"
+                        Fill="{StaticResource White}" />
+                <VerticalStackLayout Margin="20,0,20,0">
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
+                        <Label Text="Subtotal" TextColor="{StaticResource BlackText}" />
+                        <Label Text="{Binding Subtotal, StringFormat='{}{0:C}'}" TextColor="{StaticResource BlackText}" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
+                        <Label Text="Delivery" TextColor="{StaticResource BlackText}" />
+                        <Label Text="Free" TextColor="{StaticResource GrayText}" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
+                        <Label Text="Total" FontAttributes="Bold" TextColor="{StaticResource BlackText}" />
+                        <Label Text="{Binding Total, StringFormat='{}{0:C}'}" FontAttributes="Bold" TextColor="{StaticResource BlackText}" HorizontalOptions="End" />
+                    </Grid>
+                    <!-- Checkout Button -->
+                    <Button Text="Checkout"  VerticalOptions="Center" FontSize="18" BackgroundColor="{StaticResource Pink3}" TextColor="White" CornerRadius="10" Margin="0,5,0,0"/>
+                </VerticalStackLayout>
+            </Grid>
         </Grid>
-
-        <!-- Cart Items -->
-        <Grid Grid.Row="1">
-            <CollectionView x:Name="CartItemsCollectionView" BackgroundColor="{StaticResource Pink1}" ItemsSource="{Binding CartItems}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="10" Padding="10" BorderColor="{StaticResource Pink3}">
-                            <Grid ColumnDefinitions="0.2*,0.6*,0.2*">
-
-                                <Image Source="{Binding Image}"  HeightRequest="60" WidthRequest="60" />
-                                <VerticalStackLayout Grid.Column="1">
-                                    <Label Text="{Binding ProductName}" FontSize="20" VerticalOptions="Center"  Margin="0,0,0,4"/>
-                                    <Label Text="{Binding Description}" FontSize="15"  TextColor="#BDBDBD" VerticalOptions="Center" Margin="0,0,0,4"/>
-                                    <Label Text="{Binding Price, StringFormat='{}{0:C}'}" FontSize="18"  VerticalOptions="Center" />
-                                </VerticalStackLayout>
-
-                                <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center" >
-                                    <Grid RowDefinitions="*,*,*" >
-                                        <Button Grid.Row="0" Text="+" FontFamily="NexaHeavy" Background="{StaticResource Pink3}" Command="{Binding BindingContext.IncrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
-                                        <Label Grid.Row="1" Text="{Binding Quantity}"  FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
-                                        <Button Grid.Row="2" Text="-"  FontFamily="NexaHeavy" Background="{StaticResource Pink1}" Command="{Binding BindingContext.DecrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
-                                    </Grid>
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-
-        <!-- Summary -->
-        <Grid Grid.Row="2">
-            <RoundRectangle CornerRadius="30,30,0,0"
-                            Fill="{StaticResource White}" />
-            <VerticalStackLayout Margin="20,0,20,0">
-                <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
-                    <Label Text="Subtotal" TextColor="{StaticResource BlackText}" />
-                    <Label Text="{Binding Subtotal, StringFormat='{}{0:C}'}" TextColor="{StaticResource BlackText}" HorizontalOptions="End" />
-                </Grid>
-                <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
-                    <Label Text="Delivery" TextColor="{StaticResource BlackText}" />
-                    <Label Text="Free" TextColor="{StaticResource GrayText}" HorizontalOptions="End" />
-                </Grid>
-                <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,0">
-                    <Label Text="Total" FontAttributes="Bold" TextColor="{StaticResource BlackText}" />
-                    <Label Text="{Binding Total, StringFormat='{}{0:C}'}" FontAttributes="Bold" TextColor="{StaticResource BlackText}" HorizontalOptions="End" />
-                </Grid>
-                <!-- Checkout Button -->
-                <Button Text="Checkout"  VerticalOptions="Center" FontSize="18" BackgroundColor="{StaticResource Pink3}" TextColor="White" CornerRadius="10" Margin="0,5,0,0"/>
-            </VerticalStackLayout>
-        </Grid>
-    </Grid>
+    </RefreshView>
 </ContentPage>

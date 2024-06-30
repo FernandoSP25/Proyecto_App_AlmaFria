@@ -7,48 +7,19 @@ using System.Threading.Tasks;
 
 namespace Proyecto_App_AlmaFria.MVVM.Models
 {
-	public class CartItem : ObservableObject
+	public class CartItem 
 	{
-		private int _id;
-		public int Id
-		{
-			get => _id;
-			set => SetProperty(ref _id, value);
-		}
+		public int ID { get; set; }
 
-		private string _productName;
-		public string ProductName
-		{
-			get => _productName;
-			set => SetProperty(ref _productName, value);
-		}
+		public string Nombre { get; set; } = null!;
 
-		private string _description;
-		public string Description
-		{
-			get => _description;
-			set => SetProperty(ref _description, value);
-		}
+		public decimal Precio { get; set; }
 
-		private decimal _price;
-		public decimal Price
-		{
-			get => _price;
-			set => SetProperty(ref _price, value);
-		}
+		public int StockActual { get; set; }
 
-		private string _image;
-		public string Image
-		{
-			get => _image;
-			set => SetProperty(ref _image, value);
-		}
+		public string? Imageurl { get; set; }
 
-		private int _quantity;
-		public int Quantity
-		{
-			get => _quantity;
-			set => SetProperty(ref _quantity, value);
-		}
+		public int Cantidad { get; set; }
+
 	}
 }
