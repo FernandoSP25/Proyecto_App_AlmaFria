@@ -9,8 +9,8 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 {
 	public class CartViewModel : ObservableObject
 	{
-		private ObservableCollection<CartItem> _cartItems;
-		public ObservableCollection<CartItem> CartItems
+		private List<CartItem> _cartItems;
+		public List<CartItem> CartItems
 		{
 			get => _cartItems;
 			set => SetProperty(ref _cartItems, value);
@@ -24,7 +24,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 		public CartViewModel()
 		{
-			CartItems = new ObservableCollection<CartItem>
+			CartItems = new List<CartItem>
 			{
 				new CartItem { Id = 1, ProductName = "Dream Cone", Description = "Nutella, cocoa & salted caramel", Price = 12.60m, Quantity = 2, Image = "dream_cone.png" },
 				new CartItem { Id = 2, ProductName = "Berry-Licious", Description = "Berry compote & raspberry coulis", Price = 14.60m, Quantity = 1, Image = "berry_licious.png" },
