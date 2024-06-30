@@ -25,11 +25,15 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			set
 			{
 				SetProperty(ref _selectedProduct, value);
-				if (value != null)
-				{
-					ProductSelectedCommand.Execute(value);
-				}
 			}
+		}
+
+		private List<ProductModel> _products;
+
+		public List<ProductModel> Products
+		{
+			get => _products;
+			set => SetProperty(ref _products, value);
 		}
 
 		private List<CategoriaModel> _categorias;
@@ -41,14 +45,15 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		}
 
 
-		public ICommand ProductSelectedCommand { get; }
+		public ICommand ProductTappedCommand { get; }
 
 		public HomeViewModel()
 		{
 			// Inicializa con datos de ejemplo
 			NombreUsuario = "name";
 			_ = listarCategorias();
-			ProductSelectedCommand = new AsyncRelayCommand<ProductModel>(ProductSelected);
+			_= listarProductos();
+			ProductTappedCommand = new AsyncRelayCommand(ProductTapped);
 		}
 
 		private async Task listarCategorias()
@@ -64,13 +69,28 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			}
 		}
 
-		private async Task ProductSelected(ProductModel selectedProduct)
+		private async Task listarProductos()
 		{
-			if (selectedProduct != null)
+			try
+			{
+				var productos = await Http.GetAll<ProductModel>("https://almafriaproyect.azurewebsites.net/api/productos");
+				Products = productos.Where(p => p.Categoria != 4).OrderBy(p => p.NombreProducto).ToList();
+
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Error al listar productos: {ex.Message}");
+			}
+		}
+
+
+		private async Task ProductTapped()
+		{
+			if (SelectedProduct != null)
 			{
 				var navigationParameter = new Dictionary<string, object>
 				{
-					{ "Product", selectedProduct }
+					{ "Product", SelectedProduct }
 				};
 				await Shell.Current.GoToAsync("//MenuPage/SearchPage/ProductDetailPage", navigationParameter);
 			}
