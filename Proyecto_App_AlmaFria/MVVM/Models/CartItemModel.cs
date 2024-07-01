@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Proyecto_App_AlmaFria.MVVM.Models
 {
-	public class CartItem 
+	public class CartItem : ObservableObject
 	{
+		private int _cantidad;
+		private decimal _total;
+
 		public int ID { get; set; }
 
 		public string Nombre { get; set; } = null!;
@@ -19,7 +22,24 @@ namespace Proyecto_App_AlmaFria.MVVM.Models
 
 		public string? Imageurl { get; set; }
 
-		public int Cantidad { get; set; }
+
+		public int Cantidad
+		{
+			get => _cantidad;
+			set
+			{
+				if (SetProperty(ref _cantidad, value))
+				{
+					Total = Precio * _cantidad; // Update Total when Cantidad changes
+				}
+			}
+		}
+
+		public decimal Total
+		{
+			get => _total;
+			set => SetProperty(ref _total, value);
+		}
 
 	}
 }

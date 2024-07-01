@@ -102,18 +102,19 @@ app.MapPost("/api/auth/register", async (Cliente user, PaleteriaDbContext bd) =>
 
 
 //Logout
-app.MapPost("/api/auth/logout", async (int id, PaleteriaDbContext bd) =>
+app.MapPut("/api/auth/logout", async (int id, PaleteriaDbContext bd) =>
 {
-	var loginRecord = await bd.Logins.FindAsync(id);
+	var loginRecord = await bd.Logins
+		.FirstOrDefaultAsync(l => l.UserId == id && l.IsConnected);
 	if (loginRecord == null)
 	{
-		return Results.NotFound();
+		return Results.NotFound(new { message = "No active session found for the given LoginID." });
 	}
 	loginRecord.LogoutTimestamp = DateTime.Now;
+	loginRecord.IsConnected = false;
 	await bd.SaveChangesAsync();
 	return Results.Ok(loginRecord.LoginId);
-});
-
+}); 
 
 
 app.UseHttpsRedirection();
