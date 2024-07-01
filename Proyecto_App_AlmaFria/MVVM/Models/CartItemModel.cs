@@ -9,46 +9,37 @@ namespace Proyecto_App_AlmaFria.MVVM.Models
 {
 	public class CartItem : ObservableObject
 	{
-		private int _id;
-		public int Id
+		private int _cantidad;
+		private decimal _total;
+
+		public int ID { get; set; }
+
+		public string Nombre { get; set; } = null!;
+
+		public decimal Precio { get; set; }
+
+		public int StockActual { get; set; }
+
+		public string? Imageurl { get; set; }
+
+
+		public int Cantidad
 		{
-			get => _id;
-			set => SetProperty(ref _id, value);
+			get => _cantidad;
+			set
+			{
+				if (SetProperty(ref _cantidad, value))
+				{
+					Total = Precio * _cantidad; // Update Total when Cantidad changes
+				}
+			}
 		}
 
-		private string _productName;
-		public string ProductName
+		public decimal Total
 		{
-			get => _productName;
-			set => SetProperty(ref _productName, value);
+			get => _total;
+			set => SetProperty(ref _total, value);
 		}
 
-		private string _description;
-		public string Description
-		{
-			get => _description;
-			set => SetProperty(ref _description, value);
-		}
-
-		private decimal _price;
-		public decimal Price
-		{
-			get => _price;
-			set => SetProperty(ref _price, value);
-		}
-
-		private string _image;
-		public string Image
-		{
-			get => _image;
-			set => SetProperty(ref _image, value);
-		}
-
-		private int _quantity;
-		public int Quantity
-		{
-			get => _quantity;
-			set => SetProperty(ref _quantity, value);
-		}
 	}
 }

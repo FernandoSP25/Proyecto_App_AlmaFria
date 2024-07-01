@@ -6,6 +6,9 @@ using System.Windows.Input;
 using Proyecto_App_AlmaFria.Services;
 using Proyecto_App_AlmaFria.Utilities;
 using Proyecto_App_AlmaFria.Views;
+using Newtonsoft.Json;
+
+
 
 #if ANDROID
 using Android.App;
@@ -32,6 +35,8 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 		[ObservableProperty]
 		private bool isErrorVisible;
+
+		private ClientModel _client;
 
 
 		public ICommand SigninCommand { get; }
@@ -85,11 +90,9 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			//	if (result > 0)
 			//	{
 			//		// Manejar el éxito del inicio de sesión
-			//		Preferences.Set("UserId", response.IdCliente);
-			//		Preferences.Set("UserName", response.Nombre);
-			//		Preferences.Set("UserApellido", response.Apellido);
-			//		Preferences.Set("UserCorreoElectronico", response.CorreoElectronico);
-			//		await Shell.Current.GoToAsync("//MenuPage");
+			//		_client = response;
+			//		Preferences.Set("usuario", JsonConvert.SerializeObject(_client));
+			//		App.Current.MainPage = new MenuPage();
 			//	}
 			//	else if (result == -1)
 			//	{
@@ -107,7 +110,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			//}
 
 			App.Current.MainPage = new MenuPage();
-	
+
 
 		}
 

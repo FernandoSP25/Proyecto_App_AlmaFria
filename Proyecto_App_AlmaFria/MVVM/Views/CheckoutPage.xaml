@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
              x:Class="Proyecto_App_AlmaFria.MVVM.Views.CheckoutPage"
              Title="CheckoutPage">
-    <StackLayout Padding="20">
-        <Label Text="Checkout" FontSize="32" HorizontalOptions="Center"/>
-        <Label Text="Choose Receipt Type" FontSize="18"/>
-        <Picker Title="Receipt Type" SelectedItem="{Binding SelectedReceiptType}">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Boleta</x:String>
-                    <x:String>Factura</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-        <Button Text="Complete Purchase" Command="{Binding CompletePurchaseCommand}"/>
-    </StackLayout>
+    <ContentPage.BindingContext>
+        <local:CheckoutViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Checkout" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{StaticResource Pink3}" />
+            <Entry Placeholder="Nombre Completo" Text="{Binding Nombre}" />
+            <Entry Placeholder="DNI" Text="{Binding DNI}" />
+            <Entry Placeholder="Dirección" Text="{Binding Direccion}" />
+            <Entry Placeholder="Ciudad" Text="{Binding Ciudad}" />
+            <Button Text="Confirmar Pedido" Command="{Binding SendJsonCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

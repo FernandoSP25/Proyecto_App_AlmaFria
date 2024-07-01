@@ -9,55 +9,84 @@ using System.Windows.Input;
 
 namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 {
-    public class ProductDetailViewModel : ObservableObject
-    {
-        public ICommand AgregarCommand { get; }
-        private ProductModel _product;
-        private List<ProductModel> _listaCarrito;
+	public class ProductDetailViewModel : ObservableObject
+	{
+		public ICommand AgregarCommand { get; }
+		public ICommand SumarEventCommand { get; }
+		public ICommand RestarEventCommand { get; }
 
-        public ProductModel Product
-        {
-            get => _product;
-            set => SetProperty(ref _product, value);
-        }
+		private ProductModel _product;
+		private List<CartItem> _listaCarrito;
+		private int _cantidad;
 
-        public ProductDetailViewModel(ProductModel product)
-        {
-            Product = product;
-            _listaCarrito = CargarCarrito();
-            AgregarCommand = new AsyncRelayCommand(Agregar);
-        }
+		public ProductModel Product
+		{
+			get => _product;
+			set => SetProperty(ref _product, value);
+		}
 
-        private List<ProductModel> CargarCarrito()
-        {
-            if (Preferences.Get("carrito", "") == "")
-            {
-                return new List<ProductModel>();
-            }
-            else
-            {
-                string valor = Preferences.Get("carrito", "");
-                return JsonConvert.DeserializeObject<List<ProductModel>>(valor);
-            }
-        }
+		public int Cantidad
+		{
+			get => _cantidad;
+			set => SetProperty(ref _cantidad, value);
+		}
 
-        private async Task Agregar()
-        {
-            await Task.Run(() =>
-            {
-                int id = Product.IdProductos;
-                if(_listaCarrito.Where(p=>p.IdProductos==id).Count()>0) 
-                {
-                    System.Diagnostics.Debug.WriteLine($"El producto {Product.NombreProducto} ya fue agregado.");
-                    return;
-                }
-                _listaCarrito.Add(Product);
-                Preferences.Set("carrito", JsonConvert.SerializeObject(_listaCarrito));
+		public ProductDetailViewModel(ProductModel product)
+		{
+			Product = product;
+			_listaCarrito = CargarCarrito();
+			AgregarCommand = new AsyncRelayCommand(Agregar);
+			SumarEventCommand = new RelayCommand(SumarCantidad);
+			RestarEventCommand = new RelayCommand(RestarCantidad);
+			Cantidad = 1; // Initial quantity
+		}
 
-                //PA VER SI SE GUARDAN JIJI
-                System.Diagnostics.Debug.WriteLine($"Producto {Product.NombreProducto} agregado.");
-                System.Diagnostics.Debug.WriteLine($"Lista actual: {string.Join(", ", _listaCarrito.Select(p => p.NombreProducto))}");
-            });
-        }
-    }
+		private List<CartItem> CargarCarrito()
+		{
+			if (Preferences.Get("carrito", "") == "")
+			{
+				return new List<CartItem>();
+			}
+			else
+			{
+				string valor = Preferences.Get("carrito", "");
+				return JsonConvert.DeserializeObject<List<CartItem>>(valor);
+			}
+		}
+
+		private async Task Agregar()
+		{
+			int id = Product.IdProductos;
+			if (_listaCarrito.Where(p => p.ID == id).Count() > 0)
+			{
+				await App.Current.MainPage.DisplayAlert("ADVERTENCIA", $"El producto {Product.NombreProducto} ya fue agregado.", "OK");
+				return;
+			}
+
+			var item = new CartItem
+			{
+				ID = Product.IdProductos,
+				Nombre = Product.NombreProducto,
+				Precio = Product.PrecioVenta,
+				Imageurl = Product.Imageurl,
+				Cantidad = Cantidad,
+				StockActual = Product.StockActual,
+				Total = Cantidad * Product.PrecioVenta
+			};
+			_listaCarrito.Add(item);
+			Preferences.Set("carrito", JsonConvert.SerializeObject(_listaCarrito));
+			await App.Current.MainPage.DisplayAlert("AGREGADO", $"El producto {Product.NombreProducto} ha sido agregado.", "OK");
+		}
+
+		private void SumarCantidad()
+		{
+			Cantidad++;
+		}
+
+		private void RestarCantidad()
+		{
+			if (Cantidad > 1)
+				Cantidad--;
+		}
+	}
 }
