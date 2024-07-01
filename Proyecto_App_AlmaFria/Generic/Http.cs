@@ -86,5 +86,31 @@ namespace Proyecto_App_AlmaFria.Generic
 			T l = JsonConvert.DeserializeObject<T>(result);
 			return l;
 		}
+
+		public static async Task<int> Put(string url)
+		{
+			try
+			{
+				var cliente = new HttpClient();
+				var response = await cliente.PutAsync(url, null);
+
+				if (response.IsSuccessStatusCode)
+				{
+					string cadena = await response.Content.ReadAsStringAsync();
+					return int.Parse(cadena);
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			catch (Exception ex)
+			{
+				return 0;
+			}
+		}
+
+
+
 	}
 }

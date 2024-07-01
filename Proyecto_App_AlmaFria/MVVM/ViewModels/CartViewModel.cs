@@ -18,44 +18,58 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			set => SetProperty(ref _cartItems, value);
 		}
 
-		public decimal Subtotal => CartItems.Sum(item => item.Precio * item.Cantidad);
-		public decimal Total => Subtotal; // Asumiendo que no hay otros cargos
+		//public decimal Subtotal => CartItems.Sum(item => item.Precio * item.Cantidad);
+		//public decimal IGV => Subtotal * 0.18m; // Assuming 18% IGV
+		public decimal Total => CartItems.Sum(item => item.Precio * item.Cantidad);
 
 		public ICommand IncrementCommand { get; }
 		public ICommand DecrementCommand { get; }
+		public ICommand EliminarEventCommand { get; }
+		public ICommand CheckoutCommand { get; }
 
 		public CartViewModel()
 		{
 			CartItems = new ObservableCollection<CartItem>();
 			IncrementCommand = new RelayCommand<CartItem>(IncrementQuantity);
 			DecrementCommand = new RelayCommand<CartItem>(DecrementQuantity);
+			EliminarEventCommand = new RelayCommand<CartItem>(EliminarItem);
+			InitializeAsync().ConfigureAwait(false);
+			CheckoutCommand = new AsyncRelayCommand(Checkout);
+		}
+
+		public async Task InitializeAsync()
+		{
+			await ObtenerCarrito();
+			OnPropertyChanged(nameof(Total));
 		}
 
 		public async Task ObtenerCarrito()
 		{
 			var items = CargarCarrito().Select(product => new CartItem
 			{
-				ID = product.IdProductos,
-				Nombre = product.NombreProducto,
-				Precio = product.PrecioVenta,
+				ID = product.ID,
+				Nombre = product.Nombre,
+				Precio = product.Precio,
 				StockActual = product.StockActual,
 				Imageurl = product.Imageurl,
-				Cantidad = 1
+				Cantidad = product.Cantidad,
+				Total = product.Total
 			}).ToList();
 
 			CartItems = new ObservableCollection<CartItem>(items);
+			OnPropertyChanged(nameof(Total));
 		}
 
-		private List<ProductModel> CargarCarrito()
+		private List<CartItem> CargarCarrito()
 		{
 			if (Preferences.Get("carrito", "") == "")
 			{
-				return new List<ProductModel>();
+				return new List<CartItem>();
 			}
 			else
 			{
 				string valor = Preferences.Get("carrito", "");
-				return JsonConvert.DeserializeObject<List<ProductModel>>(valor);
+				return JsonConvert.DeserializeObject<List<CartItem>>(valor);
 			}
 		}
 
@@ -64,7 +78,9 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			if (item.Cantidad < item.StockActual)
 			{
 				item.Cantidad++;
-				OnPropertyChanged(nameof(Subtotal));
+				GuardarCarrito();
+				//OnPropertyChanged(nameof(Subtotal));
+				//OnPropertyChanged(nameof(IGV));
 				OnPropertyChanged(nameof(Total));
 			}
 		}
@@ -74,9 +90,31 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			if (item.Cantidad > 0)
 			{
 				item.Cantidad--;
-				OnPropertyChanged(nameof(Subtotal));
+				GuardarCarrito();
+				//OnPropertyChanged(nameof(Subtotal));
+				//OnPropertyChanged(nameof(IGV));
 				OnPropertyChanged(nameof(Total));
 			}
 		}
+
+		private void EliminarItem(CartItem item)
+		{
+			CartItems.Remove(item);
+			GuardarCarrito();
+			//OnPropertyChanged(nameof(Subtotal));
+			//OnPropertyChanged(nameof(IGV));
+			OnPropertyChanged(nameof(Total));
+		}
+
+		private void GuardarCarrito()
+		{
+			Preferences.Set("carrito", JsonConvert.SerializeObject(CartItems.ToList()));
+		}
+
+		private async Task Checkout()
+		{
+			await Shell.Current.GoToAsync("//MenuPage/CheckoutPage");
+		}
 	}
+
 }
