@@ -2,25 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.AccountPage"
-              xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
+             xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
              Title="AccountPage">
 
     <ContentPage.BindingContext>
         <local:AccountViewModel />
     </ContentPage.BindingContext>
-    <Grid RowDefinitions="0.9*,0.1*">
-        <VerticalStackLayout>
-            <Label Text="Name" Margin="0,10,0,0" />
-            <Entry Text="{Binding Name}" />
-            <Label Text="Email" />
-            <Entry Text="{Binding Email}" />
-            <Label Text="Password" />
-            <Entry Text="{Binding Password}" IsPassword="True" />
-            <Button Text="Editar" Command="{Binding EditarCommand}" Margin="0,0,0,5" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
-            <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White" />
-        </VerticalStackLayout>
-        <Grid Grid.Row="1">
-            <Button Text="Logout" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White"/>
+    <Grid>
+        <!-- Background Color -->
+        <BoxView Color="{StaticResource Pink2}" HeightRequest="250" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Profile Image and Name -->
+            <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,-65,0,20">
+                <Frame WidthRequest="120" HeightRequest="120" CornerRadius="60" IsClippedToBounds="True" BorderColor="White" BackgroundColor="White" Padding="0" Margin="0,70,0,10">
+                    <Image Source="https://almacenamientoalmafria.blob.core.windows.net/almafriafiles/Courtney_VH.jpg" Aspect="AspectFill" />
+                </Frame>
+                <Label Text="Lloyd Haynes" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
+                <Label Text="callie_parisian@rosenbaum.ca" FontSize="14" HorizontalOptions="Center" TextColor="White"/>
+            </VerticalStackLayout>
+
+            <!-- Form Fields -->
+            <VerticalStackLayout Grid.Row="1" Spacing="10">
+                <Label Text="NOMBRES" FontSize="12" TextColor="Gray" />
+                <Entry Text="{Binding Email}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+
+                <Label Text="APELLIDOS" FontSize="12" TextColor="Gray" />
+                <Entry Text="{Binding Password}" IsPassword="True" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+
+                <Label Text="TELÉFONO" FontSize="12" TextColor="Gray" />
+                <Entry Text="{Binding Password}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+
+                <Label Text="DIRECCIÓN" FontSize="12" TextColor="Gray" />
+                <Entry Text="{Binding Password}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+            </VerticalStackLayout>
+
+            <!-- Theme Toggle and Logout Button -->
+            <Grid Grid.Row="2" Margin="0,20,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="LOGOUT" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White" Grid.Column="1" />
+            </Grid>
         </Grid>
     </Grid>
 </ContentPage>
