@@ -7,7 +7,6 @@ public partial class SearchPage : ContentPage
 	public SearchPage()
 	{
 		InitializeComponent();
-		BindingContext = new SearchViewModel();
 	}
 
 	private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

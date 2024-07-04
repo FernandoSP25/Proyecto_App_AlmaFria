@@ -79,8 +79,6 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			{
 				item.Cantidad++;
 				GuardarCarrito();
-				//OnPropertyChanged(nameof(Subtotal));
-				//OnPropertyChanged(nameof(IGV));
 				OnPropertyChanged(nameof(Total));
 			}
 		}
@@ -91,8 +89,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			{
 				item.Cantidad--;
 				GuardarCarrito();
-				//OnPropertyChanged(nameof(Subtotal));
-				//OnPropertyChanged(nameof(IGV));
+
 				OnPropertyChanged(nameof(Total));
 			}
 		}

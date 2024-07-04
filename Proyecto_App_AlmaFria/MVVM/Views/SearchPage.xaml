@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.SearchPage"
-             Title="SearchPage">
+             xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
+             Title="MENÚ">
+    <ContentPage.BindingContext>
+        <local:SearchViewModel />
+    </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout>
             <SearchBar Text="{Binding SearchText}" Placeholder="Buscar productos..." />

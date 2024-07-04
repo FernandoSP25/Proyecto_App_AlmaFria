@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proyecto_App_AlmaFria.Views.AccountPage"
              xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
-             Title="AccountPage">
+             Title="MENÚ">
 
     <ContentPage.BindingContext>
         <local:AccountViewModel />
@@ -22,25 +22,25 @@
             <!-- Profile Image and Name -->
             <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center" Margin="0,-65,0,20">
                 <Frame WidthRequest="120" HeightRequest="120" CornerRadius="60" IsClippedToBounds="True" BorderColor="White" BackgroundColor="White" Padding="0" Margin="0,70,0,10">
-                    <Image Source="https://almacenamientoalmafria.blob.core.windows.net/almafriafiles/Courtney_VH.jpg" Aspect="AspectFill" />
+                    <Image Source="{Binding ImagePerfil}" Aspect="AspectFill" />
                 </Frame>
-                <Label Text="Lloyd Haynes" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
-                <Label Text="callie_parisian@rosenbaum.ca" FontSize="14" HorizontalOptions="Center" TextColor="White"/>
+                <Label Text="{Binding Username}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
+                <Label Text="{Binding Email}" FontSize="14" HorizontalOptions="Center" TextColor="White"/>
             </VerticalStackLayout>
 
             <!-- Form Fields -->
             <VerticalStackLayout Grid.Row="1" Spacing="10">
                 <Label Text="NOMBRES" FontSize="12" TextColor="Gray" />
-                <Entry Text="{Binding Email}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+                <Entry Text="{Binding Nombre}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
 
                 <Label Text="APELLIDOS" FontSize="12" TextColor="Gray" />
-                <Entry Text="{Binding Password}" IsPassword="True" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+                <Entry Text="{Binding Apellido}"  FontSize="18" TextColor="Black" IsReadOnly="True"/>
 
                 <Label Text="TELÉFONO" FontSize="12" TextColor="Gray" />
-                <Entry Text="{Binding Password}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+                <Entry Text="{Binding Telefono}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
 
                 <Label Text="DIRECCIÓN" FontSize="12" TextColor="Gray" />
-                <Entry Text="{Binding Password}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+                <Entry Text="{Binding Direccion}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
             </VerticalStackLayout>
 
             <!-- Theme Toggle and Logout Button -->
