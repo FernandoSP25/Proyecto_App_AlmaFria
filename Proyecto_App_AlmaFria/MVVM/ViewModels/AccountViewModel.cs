@@ -37,10 +37,9 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
             // Inicializar comandos
             EditarCommand = new RelayCommand(OnEditar);
             SaveCommand = new RelayCommand(OnSave);
-            LogoutCommand = new RelayCommand(OnLogout);
-            // Inicializar el estado del tema
-        }
-
+            LogoutCommand = new AsyncRelayCommand(OnLogout);
+            // Inicializar el estado del tema
+        }
         private async void LoadUserData()
         {
             Name = Preferences.Get("UserName", string.Empty);
