@@ -1,4 +1,4 @@
-﻿using Proyecto_App_AlmaFria.Services;
+﻿
 using Proyecto_App_AlmaFria.Views;
 
 
@@ -6,20 +6,22 @@ namespace Proyecto_App_AlmaFria
 {
 	public partial class App : Application
 	{
-		private readonly UserSessionService _userSessionService;
-		public App(UserSessionService userSessionService)
+
+		public App()
 		{
 			InitializeComponent();
 
-			MainPage = new AppShell();
+			bool valor= Preferences.ContainsKey("usuario");
 
-			_userSessionService = userSessionService;
-			_userSessionService.LoadUserFromPreferences();
-
-			if (_userSessionService.IsUserLoggedIn)
+			if (valor)
 			{
-				MainPage = new MenuPage();
+				MainPage = new MenuPage(); // Reemplaza MenuPage con tu página de menú
 			}
+			else
+			{
+				MainPage = new AppShell(); // Reemplaza LoginPage con tu página de inicio de sesión
+			}
+
 		}
 	}
 }

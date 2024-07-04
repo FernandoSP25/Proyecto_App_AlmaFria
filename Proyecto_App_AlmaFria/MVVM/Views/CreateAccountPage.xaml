@@ -77,7 +77,7 @@
                                         CornerRadius="10" HeightRequest="60" 
                                         HorizontalOptions="Center" VerticalOptions="Center" 
                                         WidthRequest="60" />
-                        <Image Source="calendar.png" Aspect="AspectFit" HeightRequest="40" 
+                        <Image Source="birthday_cake.png" Aspect="AspectFit" HeightRequest="40" 
                                VerticalOptions="Center" HorizontalOptions="Center" />
                         <DatePicker  Grid.Column="1"    Format="dd/MM/yyyy" MinimumDate="01/01/1924" 
                                      MaximumDate="{Binding MaximumDate}" Date="{Binding FechaNacimiento}"
@@ -102,7 +102,7 @@
                         <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}" 
                                         CornerRadius="10" HeightRequest="60" HorizontalOptions="Center"
                                         VerticalOptions="Center" WidthRequest="60" />
-                        <Image Source="document.png" Aspect="AspectFit" HeightRequest="40"
+                        <Image Source="type_of_document.png" Aspect="AspectFit" HeightRequest="40"
                                VerticalOptions="Center" HorizontalOptions="Center" />
                         <Picker Grid.Column="1" Title="TIPO DE DOCUMENTO" ItemsSource="{Binding DocumentOptions}"
                                SelectedItem="{Binding SelectedTipoDocumento}" TextColor="{StaticResource GrayText}"
@@ -114,7 +114,7 @@
                         <RoundRectangle BackgroundColor="{StaticResource BackGroundColor}" 
                                         CornerRadius="10" HeightRequest="60" HorizontalOptions="Center" 
                                         VerticalOptions="Center" WidthRequest="60" />
-                        <Image Source="document_number.png" Aspect="AspectFit" HeightRequest="40"
+                        <Image Source="number_of_documet.png" Aspect="AspectFit" HeightRequest="40"
                                VerticalOptions="Center" HorizontalOptions="Center" />
                         <Entry Grid.Column="1" Placeholder="NÚMERO DE DOCUMENTO" 
                                Text="{Binding NumeroDocumento}" TextColor="{StaticResource GrayText}" 

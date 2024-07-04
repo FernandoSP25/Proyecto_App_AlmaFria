@@ -93,6 +93,21 @@ app.MapPost("/api/auth/loginrecord", async (Login loginRecord, PaleteriaDbContex
 
 
 //REGISTRO
+
+app.MapGet("/api/auth/register/valid", async (string email, PaleteriaDbContext bd) =>
+{
+	var user = await bd.Clientes
+		.FirstOrDefaultAsync(u => u.CorreoElectronico == email);
+
+	if (user == null)
+	{
+		return Results.NotFound();
+	}
+
+	return Results.Ok(user);
+});
+
+
 app.MapPost("/api/auth/register", async (Cliente user, PaleteriaDbContext bd) =>
 {
 	bd.Clientes.Add(user);

@@ -12,9 +12,9 @@ namespace Proyecto_App_AlmaFria.Services
 {
 	public class PedidoService
 	{
-		private readonly HttpClient _httpClient;
-		//List<Pedidos> Lista;
-		List<BoletaCLS> ListaBoletas;
+		//private readonly HttpClient _httpClient;
+		////List<Pedidos> Lista;
+		//List<BoletaCLS> ListaBoletas;
 		//public PedidoService(HttpClient httpClient)
 		//{
 
@@ -28,54 +28,54 @@ namespace Proyecto_App_AlmaFria.Services
 		//	this.Lista.Add(oPedido);
 		//}
 
-		public async Task sendBoleta(string json, BoletaCLS oBoletaAux)
-		{
+		//public async Task sendBoleta(string json, BoletaCLS oBoletaAux)
+		//{
 
-			var response = await _httpClient.PostAsJsonAsync("api/Sunat/", json);
+		//	var response = await _httpClient.PostAsJsonAsync("api/Sunat/", json);
 
-			if (response.IsSuccessStatusCode)
-			{
-				var responseContent = await response.Content.ReadAsStringAsync();
-				var apiResponse = JsonConvert.DeserializeObject<ApiResponseSendBill>(responseContent);
-				ListaBoletas.Add(new BoletaCLS { Nombre = oBoletaAux.Nombre, DNI = oBoletaAux.DNI, Hora = oBoletaAux.Hora, Serie = oBoletaAux.Serie, NumeroCorrelativo = oBoletaAux.NumeroCorrelativo, Status = apiResponse.Status, DocumentId = apiResponse.DocumentId, Xml = apiResponse.Xml });
-				Console.WriteLine("Satisfactorio");
-				Console.WriteLine($"Status: {apiResponse.Status}");
-				Console.WriteLine($"Document ID: {apiResponse.DocumentId}");
-				Console.WriteLine($"XML URL: {apiResponse.Xml}");
-			}
-			else
-			{
-				Console.WriteLine("Sin santisfactorio");
-			}
-		}
+		//	if (response.IsSuccessStatusCode)
+		//	{
+		//		var responseContent = await response.Content.ReadAsStringAsync();
+		//		var apiResponse = JsonConvert.DeserializeObject<ApiResponseSendBill>(responseContent);
+		//		ListaBoletas.Add(new BoletaCLS { Nombre = oBoletaAux.Nombre, DNI = oBoletaAux.DNI, Hora = oBoletaAux.Hora, Serie = oBoletaAux.Serie, NumeroCorrelativo = oBoletaAux.NumeroCorrelativo, Status = apiResponse.Status, DocumentId = apiResponse.DocumentId, Xml = apiResponse.Xml });
+		//		Console.WriteLine("Satisfactorio");
+		//		Console.WriteLine($"Status: {apiResponse.Status}");
+		//		Console.WriteLine($"Document ID: {apiResponse.DocumentId}");
+		//		Console.WriteLine($"XML URL: {apiResponse.Xml}");
+		//	}
+		//	else
+		//	{
+		//		Console.WriteLine("Sin santisfactorio");
+		//	}
+		//}
 
-		public async Task<ApiResponseLastDocument> getNumeroCorrelativoSig()
-		{
-			var content = new StringContent("", Encoding.UTF8, "application/json");
-			var response = await _httpClient.PostAsJsonAsync("api/Sunat/sendNumCorrelativoBoleta", content);
-			if (response.IsSuccessStatusCode)
-			{
-				var responseContent = await response.Content.ReadAsStringAsync();
-				var apiResponse = JsonConvert.DeserializeObject<ApiResponseLastDocument>(responseContent);
-				Console.WriteLine("Satisfactorio");
-				return apiResponse;
-			}
-			else
-			{
-				Console.WriteLine("Sin santisfactorio");
-				return null;
-			}
-		}
+		//public async Task<ApiResponseLastDocument> getNumeroCorrelativoSig()
+		//{
+		//	var content = new StringContent("", Encoding.UTF8, "application/json");
+		//	var response = await _httpClient.PostAsJsonAsync("api/Sunat/sendNumCorrelativoBoleta", content);
+		//	if (response.IsSuccessStatusCode)
+		//	{
+		//		var responseContent = await response.Content.ReadAsStringAsync();
+		//		var apiResponse = JsonConvert.DeserializeObject<ApiResponseLastDocument>(responseContent);
+		//		Console.WriteLine("Satisfactorio");
+		//		return apiResponse;
+		//	}
+		//	else
+		//	{
+		//		Console.WriteLine("Sin santisfactorio");
+		//		return null;
+		//	}
+		//}
 
-		public async Task<byte[]> getBoletaPDF(string DocumentID, string SerieNumCorre)
-		{
-			Console.WriteLine("PedidoService:");
-			Console.WriteLine($"DocumentID: {DocumentID}");
-			Console.WriteLine($"SerieNumeroCorr: {SerieNumCorre}");
-			var response = await _httpClient.GetAsync($"api/Sunat?DocumentID={DocumentID}&SerieNumCorre={SerieNumCorre}");
-			response.EnsureSuccessStatusCode();
-			return await response.Content.ReadAsByteArrayAsync();
-		}
+		//public async Task<byte[]> getBoletaPDF(string DocumentID, string SerieNumCorre)
+		//{
+		//	//Console.WriteLine("PedidoService:");
+		//	//Console.WriteLine($"DocumentID: {DocumentID}");
+		//	//Console.WriteLine($"SerieNumeroCorr: {SerieNumCorre}");
+		//	//var response = await _httpClient.GetAsync($"api/Sunat?DocumentID={DocumentID}&SerieNumCorre={SerieNumCorre}");
+		//	//response.EnsureSuccessStatusCode();
+		//	//return await response.Content.ReadAsByteArrayAsync();
+		//}
 
 		//public async Task<DniResponse> getDatosDNIAPIPERU(string DNI)
 		//{

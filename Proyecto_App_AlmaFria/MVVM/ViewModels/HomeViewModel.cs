@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Proyecto_App_AlmaFria.Generic;
+using Newtonsoft.Json;
 
 namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 {
@@ -16,6 +17,13 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		{
 			get => _nombreUsuario;
 			set => SetProperty(ref _nombreUsuario, value);
+		}
+
+		private string _imagenPerfil;	
+		public string ImagenPerfil
+		{
+			get => _imagenPerfil;
+			set => SetProperty(ref _imagenPerfil, value);
 		}
 
 		private ProductModel _selectedProduct;
@@ -53,6 +61,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			NombreUsuario = "name";
 			_ = listarCategorias();
 			_= listarProductos();
+			_= ObtenerCliente();
 			ProductTappedCommand = new AsyncRelayCommand(ProductTapped);
 		}
 
@@ -94,6 +103,15 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 				};
 				await Shell.Current.GoToAsync("//MenuPage/SearchPage/ProductDetailPage", navigationParameter);
 			}
+		}
+
+
+		private  async Task ObtenerCliente()
+		{
+			string valor = Preferences.Get("usuario", "");
+			var usuario =  JsonConvert.DeserializeObject<ClientModel>(valor);
+			NombreUsuario = "Bienvenido "+ usuario.Username;
+			ImagenPerfil = usuario.ImagenPerfil;
 		}
 	}
 }

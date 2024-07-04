@@ -3,16 +3,20 @@ using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using Proyecto_App_AlmaFria.Generic;
 using Proyecto_App_AlmaFria.MVVM.Models;
+using Proyecto_App_AlmaFria.Services;
 using Proyecto_App_AlmaFria.Utilities;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 
+
 namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 {
 	public partial class CreateAccountViewModel : ObservableObject
 	{
+
+
 		[ObservableProperty]
 		private string nombre;
 
@@ -72,6 +76,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		public CreateAccountViewModel()
 		{
 			CreateAccountCommand = new AsyncRelayCommand(CreateAccountAsync);
+
 			MaximumDate = DateTime.Now.AddYears(-18);
 		}
 
@@ -180,11 +185,15 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 			if (!await ValidateInputs())
 				return;
 
+			//await EmailVerificationService.Execute();
+
 			if (!ValidEmail.IsValidEmail(CorreoElectronico))
 			{
 				await App.Current.MainPage.DisplayAlert("Error", "Por favor, introduce una dirección de correo válida.", "OK");
+
 				return;
 			}
+
 
 			var newUser = new ClientModel
 			{
