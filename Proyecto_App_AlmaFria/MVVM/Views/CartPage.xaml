@@ -10,7 +10,7 @@
         <Grid RowDefinitions="0.1*,0.75*,0.15*">
             <!-- Header -->
             <Grid Grid.Row="0">
-                <Label Text="Your Cart" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{StaticResource Pink3}" />
+                <Label Text="CARRITO" FontSize="40" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{StaticResource Pink3}" />
             </Grid>
 
             <!-- Cart Items -->
@@ -22,10 +22,10 @@
                                 <Grid ColumnDefinitions="0.2*,0.6*,0.2*">
                                     <Image Source="{Binding Imageurl}" HeightRequest="60" WidthRequest="60" />
                                     <VerticalStackLayout Grid.Column="1">
-                                        <Label Text="{Binding Nombre}" FontSize="20" VerticalOptions="Center" Margin="0,0,0,4"/>
-                                        <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" FontSize="18" VerticalOptions="Center" />
-                                        <Label Text="{Binding Total, StringFormat='{}{0:C}'}" FontSize="Subtitle" TextColor="#1d94ab" HorizontalOptions="Center" VerticalOptions="StartAndExpand" />
-                                        <Label Text="Eliminar" HorizontalOptions="Center" TextColor="IndianRed">
+                                        <Label Text="{Binding Nombre}" FontSize="18" VerticalOptions="Center" Margin="0,0,0,4" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Precio, StringFormat='P. UNIT. -> S/. {0:N2}'}" FontSize="13" VerticalOptions="Center" />
+                                        <Label Text="{Binding Total, StringFormat='IMPORTE ->  S/. {0:N2}'}" FontSize="13"  VerticalOptions="Center" TextColor="#1d94ab" />
+                                        <Label Text="Eliminar" FontAttributes="Bold" HorizontalOptions="Center" FontSize="15" TextColor="IndianRed">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding BindingContext.EliminarEventCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
                                             </Label.GestureRecognizers>
@@ -33,9 +33,9 @@
                                     </VerticalStackLayout>
                                     <StackLayout Grid.Column="2" Orientation="Vertical" VerticalOptions="Center">
                                         <Grid RowDefinitions="*,*,*">
-                                            <Button Grid.Row="0" Text="+" FontFamily="NexaHeavy" Background="{StaticResource Pink3}" Command="{Binding BindingContext.IncrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
-                                            <Label Grid.Row="1" Text="{Binding Cantidad}" FontSize="18" VerticalOptions="Center" HorizontalOptions="Center" />
-                                            <Button Grid.Row="2" Text="-" FontFamily="NexaHeavy" Background="{StaticResource Pink1}" Command="{Binding BindingContext.DecrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" />
+                                            <Button Grid.Row="0" Text="+" FontFamily="NexaHeavy" Background="{StaticResource Pink3}" Command="{Binding BindingContext.IncrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" HeightRequest="35" WidthRequest="65" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Row="1" Text="{Binding Cantidad}" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            <Button Grid.Row="2" Text="-" FontFamily="NexaHeavy" Background="{StaticResource Pink3}" Command="{Binding BindingContext.DecrementCommand, Source={x:Reference CartItemsCollectionView}}" CommandParameter="{Binding}" HeightRequest="35" WidthRequest="65" HorizontalOptions="Center" VerticalOptions="Center"/>
                                         </Grid>
                                     </StackLayout>
                                 </Grid>
@@ -58,13 +58,13 @@
                         <Label Text="{Binding IGV, StringFormat='{}{0:C}'}" TextColor="{StaticResource GrayText}" HorizontalOptions="End" />
                     </Grid>-->
                     <Grid ColumnDefinitions="*,Auto" Margin="0,10,0,20">
-                        <Label Text="Total" FontAttributes="Bold" TextColor="{StaticResource Pink3}" FontSize="20"/>
-                        <Label Text="{Binding Total, StringFormat='{}{0:C}'}" FontAttributes="Bold" TextColor="{StaticResource BlackText}" HorizontalOptions="End" FontSize="20"/>
+                        <Label Text="TOTAL" FontAttributes="Bold" TextColor="{StaticResource Pink3}" FontSize="25"/>
+                        <Label Text="{Binding Total, StringFormat='S/. {0:N2}'}" FontAttributes="Bold" TextColor="{StaticResource BlackText}" HorizontalOptions="End" FontSize="25"/>
                     </Grid>
                     <!-- Checkout Button -->
                   
                 </VerticalStackLayout>
-                <Button Margin="20,0,20,0" Text="Checkout" VerticalOptions="End"  
+                <Button Margin="20,0,20,0" Text="PAGAR" VerticalOptions="End"  
                         FontSize="20" BackgroundColor="{StaticResource Pink3}" 
                         TextColor="White" CornerRadius="10" Command="{Binding CheckoutCommand}" />
             </Grid>

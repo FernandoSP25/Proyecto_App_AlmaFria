@@ -21,9 +21,9 @@
 
     </FlyoutItem>
 
-    <FlyoutItem Title="Historial de compras">
+    <!--<FlyoutItem Title="Historial de compras">
         <ShellContent ContentTemplate="{DataTemplate views1:PurchaseHistoryPage}" Route="PurchaseHistoryPage"/>
-    </FlyoutItem>
+    </FlyoutItem>-->
     <FlyoutItem Title="About">
         <ShellContent ContentTemplate="{DataTemplate views1:AboutPage}" Route="AboutPage" />
     </FlyoutItem>

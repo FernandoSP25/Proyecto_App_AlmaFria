@@ -24,8 +24,8 @@
                 <Frame WidthRequest="120" HeightRequest="120" CornerRadius="60" IsClippedToBounds="True" BorderColor="White" BackgroundColor="White" Padding="0" Margin="0,70,0,10">
                     <Image Source="{Binding ImagePerfil}" Aspect="AspectFill" />
                 </Frame>
-                <Label Text="{Binding Username}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
-                <Label Text="{Binding Email}" FontSize="14" HorizontalOptions="Center" TextColor="White"/>
+                <Label Text="{Binding Username}" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center" TextColor="White"/>
+                <Label Text="{Binding Email}" FontSize="16" HorizontalOptions="Center" TextColor="White"/>
             </VerticalStackLayout>
 
             <!-- Form Fields -->
@@ -36,21 +36,21 @@
                 <Label Text="APELLIDOS" FontSize="12" TextColor="Gray" />
                 <Entry Text="{Binding Apellido}"  FontSize="18" TextColor="Black" IsReadOnly="True"/>
 
-                <Label Text="TELÉFONO" FontSize="12" TextColor="Gray" />
-                <Entry Text="{Binding Telefono}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+                <Label Text="GÉNERO" FontSize="12" TextColor="Gray" />
+                <Entry Text="{Binding Sexo}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
 
-                <Label Text="DIRECCIÓN" FontSize="12" TextColor="Gray" />
-                <Entry Text="{Binding Direccion}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
+                <Label Text="TELÉGONO" FontSize="12" TextColor="Gray" />
+                <Entry Text="{Binding Telefono}" FontSize="18" TextColor="Black" IsReadOnly="True"/>
             </VerticalStackLayout>
 
             <!-- Theme Toggle and Logout Button -->
-            <Grid Grid.Row="2" Margin="0,20,0,20">
+            <Grid Grid.Row="2" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Text="LOGOUT" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White" Grid.Column="1" />
+                <Button Text="SALIR" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Pink3}" TextColor="White" Grid.Column="1" />
             </Grid>
         </Grid>
     </Grid>
