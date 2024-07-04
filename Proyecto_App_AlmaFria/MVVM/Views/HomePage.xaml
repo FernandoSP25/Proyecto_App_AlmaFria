@@ -33,7 +33,7 @@
                 Text="{Binding NombreUsuario}" 
                 TextColor="#2D2D2D"/>
         </Grid>
-         <!--Etiquetas de bienvenida--> 
+         <!--Etiquetas de bienvenida-->
         <VerticalStackLayout Grid.Row="1" Margin="0,10,0,0">
             <Label FontSize="30"
                    VerticalOptions="Center"
@@ -45,13 +45,12 @@
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    FontFamily="NexaLight"
-                   Text="sabores"
+                   Text="SABORES"
                    TextColor="#A3A3A4"/>
         </VerticalStackLayout>
-
         <!--Título de productos populares-->
-        <VerticalStackLayout Grid.Row="2" Margin="0,25,0,0">
-            <Label FontSize="25"
+        <VerticalStackLayout Grid.Row="2" Margin="0,25,0,0" Padding="0,17,0,0">
+            <Label FontSize="20"
                    VerticalOptions="Center"
                    HorizontalOptions="Start"
                    FontFamily="NexaLight"
@@ -90,8 +89,15 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-         <!--listview de productos populares-->
+        <VerticalStackLayout Grid.Row="2"  Padding="0,230,0,0">
+            <Label FontSize="20"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   FontFamily="NexaLight"
+                   Text="Variedad de paletas "
+                   TextColor="#DB6443"/>
+        </VerticalStackLayout>
+        <!--listview de productos populares-->
         <ScrollView Grid.Row="4">
             <VerticalStackLayout >
                 <ListView SelectedItem="{Binding SelectedProduct}" ItemsSource="{Binding Products}" ItemTapped="ListView_ItemTapped" Margin="0,15,0,0" RowHeight="100">
@@ -102,9 +108,6 @@
                                     <Image Grid.Column="0" Source="{Binding Imageurl}" WidthRequest="60" HeightRequest="60" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Padding="10,0">
                                         <Label Text="{Binding NombreProducto}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="15"/>
-                                        <!--<Label Text="{Binding DescripcionProducto}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="10"/>-->
-                                        <!--<Label Text="{Binding PrecioVenta}" VerticalOptions="Center" HorizontalOptions="Start"/>-->
-                                        
                                     </VerticalStackLayout>
                                 </Grid>
                             </ViewCell>
@@ -113,6 +116,14 @@
                 </ListView>
             </VerticalStackLayout>
         </ScrollView>
+        <VerticalStackLayout Grid.Row="2"  Padding="0,500,0,0">
+            <Label FontSize="15"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontFamily="NexaLight"                FontAttributes="Bold"
+                   Text="Si se te antoja una? No dudes en comprar!!"
+                   TextColor="#DB6443"/>
+        </VerticalStackLayout>
     </Grid>
 
 </ContentPage>
