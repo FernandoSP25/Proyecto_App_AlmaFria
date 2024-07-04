@@ -26,7 +26,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
         private string telefono;
 
 		[ObservableProperty]
-		private string direccion;
+		private string sexo;
 
 		[ObservableProperty]
 		private string imagePerfil;
@@ -60,14 +60,7 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 		    Nombre = usuario.Nombre;
 			Apellido = usuario.Apellido;
 			Telefono = usuario.Telefono;
-			if(usuario.Direccion != null)
-			{
-				Direccion = usuario.Direccion;
-			}
-			else
-			{
-				Direccion = "No address";
-			}
+            Sexo = usuario.Sexo;
 			
 		}
 
