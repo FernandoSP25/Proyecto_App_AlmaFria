@@ -27,7 +27,6 @@ namespace Proyecto_App_AlmaFria
 
 #if DEBUG
 			builder.Logging.AddDebug();
-			builder.Services.AddSingleton<UserSessionService>();
 
 #endif
 			return builder.Build();

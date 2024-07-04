@@ -17,53 +17,59 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
     public partial class AccountViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string name;
+        private string nombre;
 
         [ObservableProperty]
-        private string email;
+        private string apellido;
 
         [ObservableProperty]
-        private string password;
+        private string telefono;
 
-        public ICommand EditarCommand { get; }
-        public ICommand SaveCommand { get; }
+		[ObservableProperty]
+		private string direccion;
+
+		[ObservableProperty]
+		private string imagePerfil;
+
+		[ObservableProperty]
+		private string email;
+
+		[ObservableProperty]
+		private string username;
+
         public ICommand LogoutCommand { get; }
-        public ICommand ToggleThemeCommand { get; }
 
         public AccountViewModel()
         {
             // Cargar los datos desde Preferences
-            LoadUserData();
+			_= ObtenerCliente();
             // Inicializar comandos
-            EditarCommand = new RelayCommand(OnEditar);
-            SaveCommand = new RelayCommand(OnSave);
-            LogoutCommand = new RelayCommand(OnLogout);
+            LogoutCommand = new AsyncRelayCommand (OnLogout);
             // Inicializar el estado del tema
         }
 
-        private async void LoadUserData()
-        {
-            Name = Preferences.Get("UserName", string.Empty);
-            Email = Preferences.Get("UserCorreoElectronico", string.Empty);
-            Password = await SecureStorage.GetAsync("UserPassword"); // Recuperar la contraseña de forma segura
-        }
 
-        private void OnEditar()
-        {
-            // Lógica para habilitar la edición de los campos (si es necesario)
-        }
+		private async Task ObtenerCliente()
+		{
+			string valor = Preferences.Get("usuario", "");
+			ClientModel usuario = JsonConvert.DeserializeObject<ClientModel>(valor);
 
-        private async void OnSave()
-        {
-            // Guardar los datos editados en Preferences
-            Preferences.Set("UserName", Name);
-            Preferences.Set("UserCorreoElectronico", Email);
-            await SecureStorage.SetAsync("UserPassword", Password); // Almacenar la contraseña de forma segura
-
-            // Mostrar mensaje de éxito
-            await App.Current.MainPage.DisplayAlert("Success", "Account details saved successfully.", "OK");
-        }
-
+			ImagePerfil = usuario.ImagenPerfil;
+			Username = usuario.Username;
+			Email = usuario.CorreoElectronico;
+		    Nombre = usuario.Nombre;
+			Apellido = usuario.Apellido;
+			Telefono = usuario.Telefono;
+			if(usuario.Direccion != null)
+			{
+				Direccion = usuario.Direccion;
+			}
+			else
+			{
+				Direccion = "No address";
+			}
+			
+		}
 
 		private async Task OnLogout()
 		{

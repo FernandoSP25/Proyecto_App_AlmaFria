@@ -53,64 +53,64 @@ namespace Proyecto_App_AlmaFria.MVVM.ViewModels
 
 		private async Task Login()
 		{
-			//if (!ValidEmail.IsValidEmail(Email))
+			if (!ValidEmail.IsValidEmail(Email))
 
-			//{
-			//	ErrorMessage = "Please enter a valid email address.";
-			//	IsErrorVisible = true;
-			//	return;
-			//}
-			//IsErrorVisible = false;
+			{
+				ErrorMessage = "Please enter a valid email address.";
+				IsErrorVisible = true;
+				return;
+			}
+			IsErrorVisible = false;
 
-			//string _email = Email;
-			//string _password = Password;
-			//var response = await Http.Get<ClientModel>("https://almafriaproyect.azurewebsites.net/api/auth/login?email=" + _email + "&password=" + _password);
+			string _email = Email;
+			string _password = Password;
+			var response = await Http.Get<ClientModel>("https://almafriaproyect.azurewebsites.net/api/auth/login?email=" + _email + "&password=" + _password);
 
-			//if (response != null)
-			//{
-			//	var status = await Permissions.RequestAsync<Permissions.NetworkState>();
-			//	if (status != PermissionStatus.Granted)
-			//	{
-			//		ErrorMessage = "Permission to access network state is denied.";
-			//		return;
-			//	}
-			//	// Crear el registro de inicio de sesión
-			//	var loginRecord = new LoginModel
-			//	{
-			//		UserId = response.IdCliente,
-			//		SessionToken = GenerateSessionToken(),
-			//		LoginTimestamp = DateTime.Now,
-			//		IsConnected = true,
-			//		Ipaddress = GetDeviceIpAddress(),
-			//		DeviceInfo = GetDeviceInfo()
-			//	};
+			if (response != null)
+			{
+				var status = await Permissions.RequestAsync<Permissions.NetworkState>();
+				if (status != PermissionStatus.Granted)
+				{
+					ErrorMessage = "Permission to access network state is denied.";
+					return;
+				}
 
-			//	var result = await Http.Post("https://almafriaproyect.azurewebsites.net/api/auth/loginrecord", loginRecord);
 
-			//	if (result > 0)
-			//	{
-			//		// Manejar el éxito del inicio de sesión
-			//		_client = response;
-			//		Preferences.Set("usuario", JsonConvert.SerializeObject(_client));
-			//		App.Current.MainPage = new MenuPage();
-			//	}
-			//	else if (result == -1)
-			//	{
-			//		ErrorMessage = "User already logged in on another device.";
-			//	}
-			//	else
-			//	{
-			//		ErrorMessage = "Failed to log the session. Please try again.";
-			//	}
-			//}
-			//else
-			//{
-			//	// Manejar error de autenticación
-			//	ErrorMessage = "Invalid credentials. Please try again.";
-			//}
 
-			App.Current.MainPage = new MenuPage();
+				// Crear el registro de inicio de sesión
+				var loginRecord = new LoginModel
+				{
+					UserId = response.IdCliente,
+					SessionToken = GenerateSessionToken(),
+					LoginTimestamp = DateTime.Now,
+					IsConnected = true,
+					Ipaddress = GetDeviceIpAddress(),
+					DeviceInfo = GetDeviceInfo()
+				};
 
+				var result = await Http.Post("https://almafriaproyect.azurewebsites.net/api/auth/loginrecord", loginRecord);
+
+				if (result > 0)
+				{
+					// Manejar el éxito del inicio de sesión
+					_client = response;
+					Preferences.Set("usuario", JsonConvert.SerializeObject(_client));
+					App.Current.MainPage = new MenuPage();
+				}
+				else if (result == -1)
+				{
+					ErrorMessage = "User already logged in on another device.";
+				}
+				else
+				{
+					ErrorMessage = "Failed to log the session. Please try again.";
+				}
+			}
+			else
+			{
+				// Manejar error de autenticación
+				ErrorMessage = "Invalid credentials. Please try again.";
+			}
 
 		}
 

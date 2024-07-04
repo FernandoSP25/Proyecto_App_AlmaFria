@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:local="clr-namespace:Proyecto_App_AlmaFria.MVVM.ViewModels"
              x:Class="Proyecto_App_AlmaFria.MVVM.Views.CheckoutPage"
-             Title="CheckoutPage">
+             Title="SALIR">
     <ContentPage.BindingContext>
         <local:CheckoutViewModel />
     </ContentPage.BindingContext>
